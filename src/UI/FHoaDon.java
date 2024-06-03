@@ -8,6 +8,8 @@ import DAO.TongXeDAO;
 import DAO.TraXeDAO;
 import DTO.NhapXeDTO;
 import DTO.TongXeDTO;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -190,6 +192,14 @@ public class FHoaDon extends javax.swing.JFrame {
         btnInHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInHoaDon.setFocusPainted(false);
         btnInHoaDon.setName("btnInHoaDon"); // NOI18N
+        btnInHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnInHoaDonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnInHoaDonMouseExited(evt);
+            }
+        });
         btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInHoaDonActionPerformed(evt);
@@ -563,6 +573,18 @@ public class FHoaDon extends javax.swing.JFrame {
     private void txtLoaiVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiVeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtLoaiVeActionPerformed
+
+    private void btnInHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInHoaDonMouseEntered
+        // TODO add your handling code here:
+        btnInHoaDon.setFont(new Font(btnInHoaDon.getFont().getName(), Font.BOLD, btnInHoaDon.getFont().getSize()));
+        btnInHoaDon.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnInHoaDonMouseEntered
+
+    private void btnInHoaDonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInHoaDonMouseExited
+        // TODO add your handling code here:
+        btnInHoaDon.setFont(new Font(btnInHoaDon.getFont().getName(), Font.PLAIN, btnInHoaDon.getFont().getSize()));
+        btnInHoaDon.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnInHoaDonMouseExited
 
     /**
      * @param args the command line arguments

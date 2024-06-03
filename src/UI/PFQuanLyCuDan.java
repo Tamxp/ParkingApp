@@ -10,6 +10,7 @@ import DTO.INFO_TKCD;
 import DTO.INFO_TKNV;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -58,7 +59,7 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
             tblModel.removeRow(i);
         }
         for (int i = 0; i < list.size(); i++) {
-            row[0] = list.get(i).getMaNV();
+            row[0] = list.get(i).getMaCD();
             row[1] = list.get(i).getHoTen();
             row[2] = list.get(i).getDC();
             row[3] = list.get(i).getCCCD();
@@ -74,7 +75,7 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
             tblModel.removeRow(i);
         }
-        row[0] = nx.getMaNV();
+        row[0] = nx.getMaCD();
         row[1] = nx.getHoTen();
         row[2] = nx.getDC();
         row[3] = nx.getCCCD();
@@ -101,7 +102,7 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         btnSuaTK = new javax.swing.JButton();
         txtTimkiem = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
-        btnSuaTK1 = new javax.swing.JButton();
+        btnQLTK = new javax.swing.JButton();
         LamMoi = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 255));
@@ -138,6 +139,14 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         btnThemTK.setBorderPainted(false);
         btnThemTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemTK.setFocusPainted(false);
+        btnThemTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseExited(evt);
+            }
+        });
         btnThemTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemTKActionPerformed(evt);
@@ -151,6 +160,14 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         btnSuaTK.setBorderPainted(false);
         btnSuaTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuaTK.setFocusPainted(false);
+        btnSuaTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSuaTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSuaTKMouseExited(evt);
+            }
+        });
         btnSuaTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaTKActionPerformed(evt);
@@ -184,6 +201,12 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTimkiemMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTimkiemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTimkiemMouseExited(evt);
+            }
         });
         btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,16 +214,24 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
             }
         });
 
-        btnSuaTK1.setBackground(new java.awt.Color(102, 102, 255));
-        btnSuaTK1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSuaTK1.setText("Quản lí tài khoản");
-        btnSuaTK1.setBorder(null);
-        btnSuaTK1.setBorderPainted(false);
-        btnSuaTK1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnSuaTK1.setFocusPainted(false);
-        btnSuaTK1.addActionListener(new java.awt.event.ActionListener() {
+        btnQLTK.setBackground(new java.awt.Color(102, 102, 255));
+        btnQLTK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnQLTK.setText("Quản lí tài khoản");
+        btnQLTK.setBorder(null);
+        btnQLTK.setBorderPainted(false);
+        btnQLTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQLTK.setFocusPainted(false);
+        btnQLTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnQLTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnQLTKMouseExited(evt);
+            }
+        });
+        btnQLTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaTK1ActionPerformed(evt);
+                btnQLTKActionPerformed(evt);
             }
         });
 
@@ -211,6 +242,12 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         LamMoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LamMoiMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LamMoiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LamMoiMouseExited(evt);
             }
         });
         LamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -224,60 +261,55 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 68, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(194, 194, 194)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTimkiem)
+                        .addGap(51, 51, 51)
+                        .addComponent(LamMoi))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
                         .addComponent(btnThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(77, 77, 77)
                         .addComponent(btnSuaTK, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
-                        .addComponent(btnSuaTK1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(123, 123, 123))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(191, 191, 191)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnTimkiem)
-                                .addGap(51, 51, 51)
-                                .addComponent(LamMoi)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 68, Short.MAX_VALUE))
+                        .addComponent(btnQLTK, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)
-                        .addGap(4, 4, 4)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(104, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnSuaTK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSuaTK1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(75, 75, 75))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel2)
-                                .addComponent(LamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(26, 26, 26)))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSuaTK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnQLTK, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(LamMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
@@ -337,42 +369,30 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimkiemMouseClicked
 
     private void txtTimkiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimkiemKeyPressed
-////        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-////            DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
-////            Object[] row = new Object[4];
-////            String checkAcc = txtTimkiem.getText();
-////            DangNhapDAO dn = new DangNhapDAO();
-////            AccountDTO ac = dn.CheckUser(txtTimkiem.getText());
-////            for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-////                tblModel.removeRow(i);
-////            }
-////            if (ac != null) {
-////                row[0] = ac.getTenNguoidung();
-////                row[1] = ac.getSdt();
-////                row[2] = ac.getTaiKhoan();
-////                row[3] = ac.getMatKhau();
-////                tblModel.addRow(row);
-////                TableNhanVien.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-////                    @Override
-////                    public void valueChanged(ListSelectionEvent e) {
-////                        if (TableNhanVien.getSelectedRow() >= 0) {
-////                            txtTaikhoan.setEditable(false);
-////                            txtTen.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 0));
-////                            txtSdt.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 1));
-////                            txtTaikhoan.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 2));
-////                            txtPass.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 3));
-////                        }
-////                    }
-////                });
-////                txtTimkiem.setText("Nhập tài khoản...");
-////                txtTimkiem.setForeground(new Color(153, 153, 153));
-////            } else {
-////                JOptionPane.showMessageDialog(this, "Không tìm thấy tài khoản");
-////                txtTimkiem.setText("Nhập tài khoản...");
-////                txtTimkiem.setForeground(new Color(153, 153, 153));
-////                loadTabel();
-////            }
-////        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
+            Object[] row = new Object[6];
+            String macd = txtTimkiem.getText();
+            DangNhapDAO dn = new DangNhapDAO();
+            if (txtTimkiem.getText().contains("Nhập mã CD...") == true) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã cư dân cần tìm");
+            } else if (txtTimkiem.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã cư dân cần tìm");
+                txtTimkiem.setText("Nhập mã CD...");
+                txtTimkiem.setForeground(new Color(153, 153, 153));
+            } else {
+                INFO_TKCD nx=dn.tableInfoCD2(macd);
+                if (nx!=null){
+                    loadTabel2(nx);
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy cư dân");
+                    txtTimkiem.setText("Nhập mã CD...");
+                    txtTimkiem.setForeground(new Color(153, 153, 153));
+                    loadTabel();
+                }
+            }
+        }
     }//GEN-LAST:event_txtTimkiemKeyPressed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
@@ -408,13 +428,12 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
 
     private void btnTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseClicked
         // TODO add your handling code here:
-        new FQuanLyTKCD().setVisible(true);
     }//GEN-LAST:event_btnTimkiemMouseClicked
 
-    private void btnSuaTK1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaTK1ActionPerformed
+    private void btnQLTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLTKActionPerformed
         // TODO add your handling code here:
         new FQuanLyTKCD().setVisible(true);
-    }//GEN-LAST:event_btnSuaTK1ActionPerformed
+    }//GEN-LAST:event_btnQLTKActionPerformed
 
     private void LamMoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseClicked
         // TODO add your handling code here:
@@ -428,12 +447,82 @@ public class PFQuanLyCuDan extends javax.swing.JPanel {
         
     }//GEN-LAST:event_LamMoiActionPerformed
 
+    private void btnThemTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseEntered
+        // TODO add your handling code here:
+        
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.BOLD, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnThemTKMouseEntered
+
+    private void btnThemTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseExited
+        // TODO add your handling code here:
+        
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.PLAIN, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnThemTKMouseExited
+
+    private void btnSuaTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaTKMouseEntered
+        // TODO add your handling code here:
+        
+        btnSuaTK.setFont(new Font(btnSuaTK.getFont().getName(), Font.BOLD, btnSuaTK.getFont().getSize()));
+        btnSuaTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnSuaTKMouseEntered
+
+    private void btnSuaTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaTKMouseExited
+        // TODO add your handling code here:
+        
+        btnSuaTK.setFont(new Font(btnSuaTK.getFont().getName(), Font.PLAIN, btnSuaTK.getFont().getSize()));
+        btnSuaTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnSuaTKMouseExited
+
+    private void btnQLTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQLTKMouseEntered
+        // TODO add your handling code here:
+       
+        btnQLTK.setFont(new Font(btnQLTK.getFont().getName(), Font.BOLD, btnQLTK.getFont().getSize()));
+        btnQLTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnQLTKMouseEntered
+
+    private void btnQLTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnQLTKMouseExited
+        // TODO add your handling code here:
+       
+        btnQLTK.setFont(new Font(btnQLTK.getFont().getName(), Font.PLAIN, btnQLTK.getFont().getSize()));
+        btnQLTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnQLTKMouseExited
+
+    private void btnTimkiemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseEntered
+        // TODO add your handling code here:
+        
+        btnTimkiem.setFont(new Font(btnTimkiem.getFont().getName(), Font.BOLD, btnTimkiem.getFont().getSize()));
+        btnTimkiem.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTimkiemMouseEntered
+
+    private void btnTimkiemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseExited
+        // TODO add your handling code here:
+        
+        btnTimkiem.setFont(new Font(btnTimkiem.getFont().getName(), Font.PLAIN, btnTimkiem.getFont().getSize()));
+        btnTimkiem.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTimkiemMouseExited
+
+    private void LamMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseEntered
+        // TODO add your handling code here:
+      
+        LamMoi.setFont(new Font(LamMoi.getFont().getName(), Font.BOLD, LamMoi.getFont().getSize()));
+        LamMoi.setForeground(Color.WHITE);
+    }//GEN-LAST:event_LamMoiMouseEntered
+
+    private void LamMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseExited
+        // TODO add your handling code here:
+        
+        LamMoi.setFont(new Font(LamMoi.getFont().getName(), Font.PLAIN, LamMoi.getFont().getSize()));
+        LamMoi.setForeground(Color.BLACK);
+    }//GEN-LAST:event_LamMoiMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton LamMoi;
     private javax.swing.JTable TableNhanVien;
+    private javax.swing.JButton btnQLTK;
     private javax.swing.JButton btnSuaTK;
-    private javax.swing.JButton btnSuaTK1;
     private javax.swing.JButton btnThemTK;
     private javax.swing.JButton btnTimkiem;
     private javax.swing.JLabel jLabel1;

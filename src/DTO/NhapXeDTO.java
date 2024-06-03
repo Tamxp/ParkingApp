@@ -27,6 +27,7 @@ public class NhapXeDTO {
     private String maNV1;
     private String maNV2;
     private String maCD;
+    private String Status;
 
     public NhapXeDTO() {
     }
@@ -41,6 +42,14 @@ public class NhapXeDTO {
         this.viTri=vt;
         this.ID_phi=ID_phi;
         
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String Status) {
+        this.Status = Status;
     }
 
     public String getBienSo() {

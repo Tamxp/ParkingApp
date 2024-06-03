@@ -8,6 +8,8 @@ import DAO.TongVeDAO;
 import DTO.NhapXeDTO;
 import DTO.TongVeDTO;
 import DTO.TongXeDTO;
+import java.awt.Color;
+import java.awt.Font;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,16 +40,15 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
         for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
                 tblModel.removeRow(i);
         }
-        Object[] row = new Object[8];
+        Object[] row = new Object[7];
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaVe();
             row[1] = list.get(i).getBienSo();
             row[2] = list.get(i).getNgayGui();
-            row[3] = list.get(i).getGioGui();
-            row[4] = list.get(i).getNgayNhan();
-            row[5] = list.get(i).getGioNhan();
-            row[6] = list.get(i).getMaCD();
-            row[7] = list.get(i).getLoaiXe();
+            row[3] = list.get(i).getNgayNhan();
+            row[4] = list.get(i).getMaCD();
+            row[5] = list.get(i).getLoaiXe();
+            row[6] = list.get(i).getStatus();
             tblModel.addRow(row);
         }
     }
@@ -102,6 +103,14 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
         btnXoaVe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoaVe.setFocusable(false);
         btnXoaVe.setName("btnXoaVe"); // NOI18N
+        btnXoaVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXoaVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXoaVeMouseExited(evt);
+            }
+        });
         btnXoaVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaVeActionPerformed(evt);
@@ -119,6 +128,14 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
         btnCapNhat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCapNhat.setFocusable(false);
         btnCapNhat.setName("btnCapNhatVe"); // NOI18N
+        btnCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCapNhatMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCapNhatMouseExited(evt);
+            }
+        });
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
@@ -137,6 +154,14 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Làm mới");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -148,7 +173,7 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã vé", "Biển Số Xe", "Ngày Tạo", "Giờ Tạo", "Ngày Hết Hạn", "Giờ Hết Hạn", "Mã Chủ sở hữu", "Tình trạng"
+                "Mã vé", "Biển Số Xe", "Ngày Tạo", "Ngày Hết Hạn", "Mã Chủ sở hữu", "Loại xe", "Tình trạng"
             }
         ));
         jScrollPane1.setViewportView(TableTTXe);
@@ -170,11 +195,25 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(412, 412, 412)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(106, 106, 106)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 81, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -190,20 +229,8 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
                                     .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(412, 412, 412)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(106, 106, 106)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 81, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +239,7 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -226,12 +253,12 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
 
@@ -247,11 +274,9 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 498, Short.MAX_VALUE)
+            .addGap(0, 529, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -262,16 +287,27 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
             if (selectedItem != null) {
                 String ve = selectedItem.toString();
                 TongVeDAO tv = new TongVeDAO();
-                if (tv.xoaVe(ve) > 0) {
-                    JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thành công!");
-                    loadTable();
-                    loadMave();
-                }
-                else
-                JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thất bại!");
-            }
-            else
-            JOptionPane.showMessageDialog(this, "Không có thẻ để xóa!");
+                int response = JOptionPane.showConfirmDialog(
+                null,
+                "Bạn có chắc chắn xóa không?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Xử lý phản hồi từ người dùng
+                if (response == JOptionPane.YES_OPTION) {
+                    if (tv.xoaVe(ve) > 0) {
+                        JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thành công!");
+                        loadTable();
+                        loadMave();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thất bại!");
+                } else if (response == JOptionPane.NO_OPTION) {
+                } 
+            }else
+                JOptionPane.showMessageDialog(this, "Không có thẻ để xóa!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -284,16 +320,25 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
             if (selectedItem != null) {
                 String the = selectedItem.toString();
                 TongVeDAO tv = new TongVeDAO();
-                if (tv.reset(the) != 0) {
-                    JOptionPane.showMessageDialog(this, "Reset thẻ thành công");
-                    loadTable();
-                    loadMave();
-                }
-                else
-                JOptionPane.showMessageDialog(this, "Reset thẻ thất bại");
-            }
-            else
-            JOptionPane.showMessageDialog(this, "Không có thẻ để reset!");
+                int response = JOptionPane.showConfirmDialog(
+                null,
+                "Bạn có chắc chắn reset không?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+                );
+                if (response == JOptionPane.YES_OPTION) {
+                    if (tv.reset(the) != 0) {
+                        JOptionPane.showMessageDialog(this, "Reset thẻ thành công");
+                        loadTable();
+                        loadMave();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(this, "Reset thẻ thất bại");
+                }else if (response == JOptionPane.NO_OPTION) {
+                } 
+            }else
+                JOptionPane.showMessageDialog(this, "Không có thẻ để reset!");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -307,6 +352,48 @@ public class PFQuanLyVeThang extends javax.swing.JPanel {
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void btnXoaVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaVeMouseEntered
+        // TODO add your handling code here:
+        
+        btnXoaVe.setFont(new Font(btnXoaVe.getFont().getName(), Font.BOLD, btnXoaVe.getFont().getSize()));
+        btnXoaVe.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnXoaVeMouseEntered
+
+    private void btnXoaVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaVeMouseExited
+        // TODO add your handling code here:
+        
+        btnXoaVe.setFont(new Font(btnXoaVe.getFont().getName(), Font.PLAIN, btnXoaVe.getFont().getSize()));
+        btnXoaVe.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnXoaVeMouseExited
+
+    private void btnCapNhatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhatMouseEntered
+        // TODO add your handling code here:
+        
+        btnCapNhat.setFont(new Font(btnCapNhat.getFont().getName(), Font.BOLD, btnCapNhat.getFont().getSize()));
+        btnCapNhat.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnCapNhatMouseEntered
+
+    private void btnCapNhatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhatMouseExited
+        // TODO add your handling code here:
+        
+        btnCapNhat.setFont(new Font(btnCapNhat.getFont().getName(), Font.PLAIN, btnCapNhat.getFont().getSize()));
+        btnCapNhat.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnCapNhatMouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+         
+        jButton1.setFont(new Font(jButton1.getFont().getName(), Font.BOLD, jButton1.getFont().getSize()));
+        jButton1.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        
+        jButton1.setFont(new Font(jButton1.getFont().getName(), Font.PLAIN, jButton1.getFont().getSize()));
+        jButton1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jButton1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

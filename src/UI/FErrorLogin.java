@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
+import main.Main;
 
 /**
  *
@@ -256,7 +257,7 @@ public class FErrorLogin extends javax.swing.JFrame {
 
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
-        new FLogin().setVisible(true);
+        new Main().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

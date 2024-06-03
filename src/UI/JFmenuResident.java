@@ -26,8 +26,8 @@ public class JFmenuResident extends javax.swing.JFrame {
     private PFNhapThongTinXe PFNhapThongTinXeTab;
     private PFDKGuiXe PFDKGuiXeTab;
     private PFThongTinThem PFInforTab;
-    private PFThongTinThe PFThongTinTheTab;
-    private PFThanhToan PFThanhToanTab;
+    private PFThongTinTheThang PFThongTinTheTab;
+    private PFTraLichSuDK PFTraLichSuDKTab;
     private String ma;
     private String BSX;
     boolean[] clicked = new boolean[5];
@@ -67,12 +67,12 @@ public class JFmenuResident extends javax.swing.JFrame {
         btnThongTinThe.setBackground(new Color(204, 204, 255));
         btnThongTinThe.setBorder(BorderFactory.createEmptyBorder());
         
-        btnThanhToan.setBorderPainted(false);
-        btnThanhToan.setContentAreaFilled(false);
-        btnThanhToan.setOpaque(true);
-        btnThanhToan.setFocusPainted(false);
-        btnThanhToan.setBackground(new Color(204, 204, 255));
-        btnThanhToan.setBorder(BorderFactory.createEmptyBorder());
+        btnLichSu.setBorderPainted(false);
+        btnLichSu.setContentAreaFilled(false);
+        btnLichSu.setOpaque(true);
+        btnLichSu.setFocusPainted(false);
+        btnLichSu.setBackground(new Color(204, 204, 255));
+        btnLichSu.setBorder(BorderFactory.createEmptyBorder());
         
         btnThongTinThem.setBorderPainted(false);
         btnThongTinThem.setContentAreaFilled(false);
@@ -110,9 +110,9 @@ public class JFmenuResident extends javax.swing.JFrame {
                         btnThongTinThe.setForeground(Color.BLACK);
                         break;
                     case 3:
-                        btnThanhToan.setBackground(new Color(204,204,255));
-                        btnThanhToan.setFont(new Font(btnThanhToan.getFont().getName(), Font.PLAIN, btnThanhToan.getFont().getSize()));
-                        btnThanhToan.setForeground(Color.BLACK);
+                        btnLichSu.setBackground(new Color(204,204,255));
+                        btnLichSu.setFont(new Font(btnLichSu.getFont().getName(), Font.PLAIN, btnLichSu.getFont().getSize()));
+                        btnLichSu.setForeground(Color.BLACK);
                         break;
                     case 4:
                         btnThongTinThem.setBackground(new Color(204,204,255));
@@ -151,7 +151,7 @@ public class JFmenuResident extends javax.swing.JFrame {
         btnNhapThongTinXe = new javax.swing.JButton();
         btnDKXe = new javax.swing.JButton();
         btnThongTinThe = new javax.swing.JButton();
-        btnThanhToan = new javax.swing.JButton();
+        btnLichSu = new javax.swing.JButton();
         btnThongTinThem = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -375,28 +375,28 @@ public class JFmenuResident extends javax.swing.JFrame {
             }
         });
 
-        btnThanhToan.setBackground(new java.awt.Color(204, 204, 255));
-        btnThanhToan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icons8_bank_cards_32px_1.png"))); // NOI18N
-        btnThanhToan.setText("Hóa đơn");
-        btnThanhToan.setBorder(null);
-        btnThanhToan.setBorderPainted(false);
-        btnThanhToan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThanhToan.setFocusable(false);
-        btnThanhToan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        btnThanhToan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        btnThanhToan.setName("btnThanhToan"); // NOI18N
-        btnThanhToan.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnLichSu.setBackground(new java.awt.Color(204, 204, 255));
+        btnLichSu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icons8_bank_cards_32px_1.png"))); // NOI18N
+        btnLichSu.setText("Tra lịch sử đăng kí");
+        btnLichSu.setBorder(null);
+        btnLichSu.setBorderPainted(false);
+        btnLichSu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLichSu.setFocusable(false);
+        btnLichSu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnLichSu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnLichSu.setName("btnLichSu"); // NOI18N
+        btnLichSu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnThanhToanMouseEntered(evt);
+                btnLichSuMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnThanhToanMouseExited(evt);
+                btnLichSuMouseExited(evt);
             }
         });
-        btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
+        btnLichSu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThanhToanActionPerformed(evt);
+                btnLichSuActionPerformed(evt);
             }
         });
 
@@ -431,7 +431,7 @@ public class JFmenuResident extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnNhapThongTinXe, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
             .addComponent(btnThongTinThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnLichSu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnThongTinThe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnDKXe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -444,7 +444,7 @@ public class JFmenuResident extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongTinThe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnThanhToan)
+                .addComponent(btnLichSu)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongTinThem)
                 .addGap(0, 375, Short.MAX_VALUE))
@@ -492,7 +492,7 @@ public class JFmenuResident extends javax.swing.JFrame {
 
     private void btnTTTKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTTTKMouseClicked
         // TODO add your handling code here:
-        new FTTAIKHOANNV_INFO(ma).setVisible(true);
+        new FTTAIKHOANCD_INFO(ma).setVisible(true);
     }//GEN-LAST:event_btnTTTKMouseClicked
 
     private void btnTTTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTTTKMouseEntered
@@ -531,7 +531,7 @@ public class JFmenuResident extends javax.swing.JFrame {
 
     private void btnDoiMKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDoiMKMouseClicked
         // TODO add your handling code here:
-        new FDoiMatKhau().setVisible(true);
+        new FDoiMatKhau_CD().setVisible(true);
     }//GEN-LAST:event_btnDoiMKMouseClicked
 
     private void btnDoiMKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDoiMKMouseEntered
@@ -603,11 +603,11 @@ public class JFmenuResident extends javax.swing.JFrame {
         }
         if (TabMainBoard.getSelectedIndex() == 0) {
             TabMainBoard.remove(0);
-            PFDKGuiXeTab = new PFDKGuiXe();
+            PFDKGuiXeTab = new PFDKGuiXe(ma);
             TabMainBoard.addTab("Đăng Ký Gửi Xe", null, PFDKGuiXeTab, "Đăng Ký Gửi Xe");
         }
         if (PFDKGuiXeTab == null) {
-            PFDKGuiXeTab = new PFDKGuiXe();
+            PFDKGuiXeTab = new PFDKGuiXe(ma);
             TabMainBoard.addTab("Đăng Ký Gửi Xe", null, PFDKGuiXeTab, "Đăng Ký Gửi Xe");
         }
     }//GEN-LAST:event_btnDKXeActionPerformed
@@ -635,53 +635,49 @@ public class JFmenuResident extends javax.swing.JFrame {
             flagClick();
             clicked[2] = true;
         }
-        //        if (TabMainBoard.getSelectedIndex() == 0) {
-            //            TabMainBoard.remove(0);
-            //            ArrayList<XeDTO> listBSX = layBSX(ma);
-            //            PFThongTinTheTab = new PFThongTinThe(listBSX);
-            //            TabMainBoard.addTab("Thông Tin Thẻ", null, PFThongTinTheTab, "CThông Tin Thẻ");
-            //        }
-        //        if (PFThongTinTheTab == null) {
-            //            ArrayList<XeDTO> listBSX = layBSX(ma);
-            //            PFThongTinTheTab = new PFThongTinThe(listBSX);
-            //            TabMainBoard.addTab("Thông Tin Thẻ", null, PFThongTinTheTab, "Thông Tin Thẻ");
-            //        }
+        if (TabMainBoard.getSelectedIndex() == 0) {
+             TabMainBoard.remove(0);
+             PFThongTinTheTab = new PFThongTinTheThang(ma);
+             TabMainBoard.addTab("Thông Tin Thẻ", null, PFThongTinTheTab, "CThông Tin Thẻ");
+        }
+        if (PFThongTinTheTab == null) {
+             PFThongTinTheTab = new PFThongTinTheThang(ma);
+             TabMainBoard.addTab("Thông Tin Thẻ", null, PFThongTinTheTab, "Thông Tin Thẻ");
+        }
     }//GEN-LAST:event_btnThongTinTheActionPerformed
 
-    private void btnThanhToanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseEntered
+    private void btnLichSuMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLichSuMouseEntered
         // TODO add your handling code here:
         if (!clicked[3]) {
-            btnThanhToan.setBackground(new Color(107,107,255)); // Thay đổi thành màu xanh nhạt khi di chuột vào
+            btnLichSu.setBackground(new Color(107,107,255)); // Thay đổi thành màu xanh nhạt khi di chuột vào
         }
-    }//GEN-LAST:event_btnThanhToanMouseEntered
+    }//GEN-LAST:event_btnLichSuMouseEntered
 
-    private void btnThanhToanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseExited
+    private void btnLichSuMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLichSuMouseExited
         // TODO add your handling code here:
         if (!clicked[3]) {
-            btnThanhToan.setBackground(new Color(204,204,255)); // Quay lại màu gốc khi di chuột ra
+            btnLichSu.setBackground(new Color(204,204,255)); // Quay lại màu gốc khi di chuột ra
         }
-    }//GEN-LAST:event_btnThanhToanMouseExited
+    }//GEN-LAST:event_btnLichSuMouseExited
 
-    private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
+    private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         if (!clicked[3]) {
-            btnThanhToan.setBackground(new Color(102,102,255));// Thay đổi thành màu hồng nhạt khi nhấp chuột
-            btnThanhToan.setFont(new Font(btnThanhToan.getFont().getName(), Font.BOLD, btnThanhToan.getFont().getSize()));
-            btnThanhToan.setForeground(Color.WHITE);
+            btnLichSu.setBackground(new Color(102,102,255));// Thay đổi thành màu hồng nhạt khi nhấp chuột
+            btnLichSu.setFont(new Font(btnLichSu.getFont().getName(), Font.BOLD, btnLichSu.getFont().getSize()));
+            btnLichSu.setForeground(Color.WHITE);
             flagClick();
             clicked[3] = true;
         }
-        //        if (TabMainBoard.getSelectedIndex() == 0) {
-            //            TabMainBoard.remove(0);
-            //            ArrayList<XeDTO> listBSX = layBSX(ma);
-            //            PFThanhToanTab = new PFThanhToan(listBSX);
-            //            TabMainBoard.addTab("Thanh toán", null, PFThanhToanTab, "Thanh toán");
-            //        }
-        //        if (PFThanhToanTab == null) {
-            //            ArrayList<XeDTO> listBSX = layBSX(ma);
-            //            PFThanhToanTab = new PFThanhToan(listBSX);
-            //            TabMainBoard.addTab("Thanh toán", null, PFThanhToanTab, "Thanh toán");
-            //        }
-    }//GEN-LAST:event_btnThanhToanActionPerformed
+        if (TabMainBoard.getSelectedIndex() == 0) {
+            TabMainBoard.remove(0);
+            PFTraLichSuDKTab = new PFTraLichSuDK(ma);
+            TabMainBoard.addTab("Tra Lịch Sử", null, PFTraLichSuDKTab, "Tra Lịch Sử");
+        }
+        if (PFTraLichSuDKTab == null) {
+            PFTraLichSuDKTab = new PFTraLichSuDK(ma);
+            TabMainBoard.addTab("Tra Lịch Sử", null, PFTraLichSuDKTab, "Tra Lịch Sử");
+       }
+    }//GEN-LAST:event_btnLichSuActionPerformed
 
     private void btnThongTinThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongTinThemMouseEntered
         // TODO add your handling code here:
@@ -755,9 +751,9 @@ public class JFmenuResident extends javax.swing.JFrame {
     private javax.swing.JTabbedPane TabMainBoard;
     private javax.swing.JButton btnDKXe;
     private javax.swing.JLabel btnDoiMK;
+    private javax.swing.JButton btnLichSu;
     private javax.swing.JButton btnNhapThongTinXe;
     private javax.swing.JLabel btnTTTK;
-    private javax.swing.JButton btnThanhToan;
     private javax.swing.JLabel btnThoat;
     private javax.swing.JButton btnThongTinThe;
     private javax.swing.JButton btnThongTinThem;

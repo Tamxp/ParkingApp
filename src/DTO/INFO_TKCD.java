@@ -9,7 +9,7 @@ package DTO;
  * @author Le Chuong
  */
 public class INFO_TKCD {
-    private String maNV;
+    private String maCD;
     private String hoTen;
     private String DC;
     private String CCCD;
@@ -20,16 +20,16 @@ public class INFO_TKCD {
         
     }
 
-    public INFO_TKCD(String maNV, String hoTen, int gt, String ngaySinh, String DC, String CCCD, String SDT) {
-        this.maNV = maNV;
+    public INFO_TKCD(String maCD, String hoTen, int gt, String ngaySinh, String DC, String CCCD, String SDT) {
+        this.maCD = maCD;
         this.hoTen = hoTen;
         this.DC = DC;
         this.CCCD = CCCD;
         this.SDT = SDT;
     }
 
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
+    public void setMaCD(String maCD) {
+        this.maCD = maCD;
     }
 
     public void setHoTen(String hoTen) {
@@ -49,8 +49,8 @@ public class INFO_TKCD {
         this.SDT = SDT;
     }
 
-    public String getMaNV() {
-        return maNV;
+    public String getMaCD() {
+        return maCD;
     }
 
     public String getHoTen() {

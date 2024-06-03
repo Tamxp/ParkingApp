@@ -18,20 +18,20 @@ public class DKVeThangDTO {
     private String loaiXe;
     private LocalDate ngayDk;
     private LocalDate ngayHetHan;
-    private int soTien;
+    private int idPhi;
     private String status;
 
     public DKVeThangDTO() {
     }
 
-    public DKVeThangDTO(String maVethang, String maCD, String bienSo, String loaiXe, LocalDate ngayDk, LocalDate ngayHetHan, int soTien, String status) {
+    public DKVeThangDTO(String maVethang, String maCD, String bienSo, String loaiXe, LocalDate ngayDk, LocalDate ngayHetHan, int idPhi, String status) {
         this.maVethang = maVethang;
         this.maCD = maCD;
         this.bienSo = bienSo;
         this.loaiXe = loaiXe;
         this.ngayDk = ngayDk;
         this.ngayHetHan = ngayHetHan;
-        this.soTien = soTien;
+        this.idPhi = idPhi;
         this.status = status;
     }
 
@@ -79,11 +79,11 @@ public class DKVeThangDTO {
     }
 
     public int getSoTien() {
-        return soTien;
+        return idPhi;
     }
 
-    public void setSoTien(int soTien) {
-        this.soTien = soTien;
+    public void setSoTien(int idPhi) {
+        this.idPhi = idPhi;
     }
 
     public String getMaCD() {

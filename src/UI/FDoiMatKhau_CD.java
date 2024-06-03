@@ -6,6 +6,7 @@ package UI;
 
 import DAO.DangNhapDAO;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import javax.swing.BorderFactory;
@@ -87,6 +88,14 @@ public class FDoiMatKhau_CD extends javax.swing.JFrame {
         btnTroLai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTroLai.setFocusable(false);
         btnTroLai.setName("btnTroLai"); // NOI18N
+        btnTroLai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTroLaiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTroLaiMouseExited(evt);
+            }
+        });
         btnTroLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTroLaiActionPerformed(evt);
@@ -101,6 +110,14 @@ public class FDoiMatKhau_CD extends javax.swing.JFrame {
         btnDoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDoi.setFocusable(false);
         btnDoi.setName("btnDoi"); // NOI18N
+        btnDoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnDoiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnDoiMouseExited(evt);
+            }
+        });
         btnDoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDoiActionPerformed(evt);
@@ -629,6 +646,30 @@ public class FDoiMatKhau_CD extends javax.swing.JFrame {
         lbXacnhan.setText("");
         txtXacnhan.setBorder(null);
     }//GEN-LAST:event_txtXacnhanMouseClicked
+
+    private void btnDoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDoiMouseEntered
+        // TODO add your handling code here:
+        btnDoi.setFont(new Font(btnDoi.getFont().getName(), Font.BOLD, btnDoi.getFont().getSize()));
+        btnDoi.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnDoiMouseEntered
+
+    private void btnDoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDoiMouseExited
+        // TODO add your handling code here:
+        btnDoi.setFont(new Font(btnDoi.getFont().getName(), Font.PLAIN, btnDoi.getFont().getSize()));
+        btnDoi.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnDoiMouseExited
+
+    private void btnTroLaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTroLaiMouseEntered
+        // TODO add your handling code here:
+        btnTroLai.setFont(new Font(btnTroLai.getFont().getName(), Font.BOLD, btnTroLai.getFont().getSize()));
+        btnTroLai.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTroLaiMouseEntered
+
+    private void btnTroLaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTroLaiMouseExited
+        // TODO add your handling code here:
+        btnTroLai.setFont(new Font(btnTroLai.getFont().getName(), Font.PLAIN, btnTroLai.getFont().getSize()));
+        btnTroLai.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTroLaiMouseExited
 
     /**
      * @param args the command line arguments

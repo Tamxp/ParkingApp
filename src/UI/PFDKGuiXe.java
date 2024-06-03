@@ -6,6 +6,7 @@ package UI;
 
 import DAO.DangKyVeThangDAO;
 import DTO.DKVeThangDTO;
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class PFDKGuiXe extends javax.swing.JPanel {
         txtNgay.setEditable(false);
         setSize(1000, 505);
         ma=maCD;
-        loadBSX();
+        loadBSX(maCD);
     }
 
     public static String getCurrentDate() {
@@ -42,9 +43,9 @@ public class PFDKGuiXe extends javax.swing.JPanel {
         return formattedDate;
     }
 
-    private void loadBSX(){
-        ArrayList<String> bsx = DangKyVeThangDAO.loadBS(ma);
+    private void loadBSX(String maCD){
         jComboBoxBSX.removeAllItems();
+        ArrayList<String> bsx = DangKyVeThangDAO.loadBS(maCD);
         for (String item: bsx){
             jComboBoxBSX.addItem(item);
         }
@@ -78,9 +79,19 @@ public class PFDKGuiXe extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        btnTiepTuc.setBackground(new java.awt.Color(102, 102, 255));
+        btnTiepTuc.setBackground(new java.awt.Color(190, 190, 255));
         btnTiepTuc.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnTiepTuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icons8-continue-32.png"))); // NOI18N
         btnTiepTuc.setText("Tiếp tục");
+        btnTiepTuc.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
+        btnTiepTuc.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTiepTucMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTiepTucMouseExited(evt);
+            }
+        });
         btnTiepTuc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTiepTucActionPerformed(evt);
@@ -115,14 +126,11 @@ public class PFDKGuiXe extends javax.swing.JPanel {
                 .addComponent(jComboBoxBSX, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(92, 92, 92)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(307, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnTiepTuc, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(188, 188, 188))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,6 +140,10 @@ public class PFDKGuiXe extends javax.swing.JPanel {
                         .addGap(140, 140, 140)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(94, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnTiepTuc, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +225,10 @@ public class PFDKGuiXe extends javax.swing.JPanel {
 
             String ngayTao = txtNgay.getText();
             String BSX = jComboBoxBSX.getSelectedItem().toString();
-            if (jComboBoxBSX.getSelectedItem()==null) {
+            if (DangKyVeThangDAO.checkBien(BSX)==false){
+                JOptionPane.showMessageDialog(this, "Xe này đã được đăng kí!");
+            }
+            else if (jComboBoxBSX.getSelectedItem()==null) {
                 JOptionPane.showMessageDialog(this, "Không có biển số xe");
             }
             else {
@@ -222,7 +237,13 @@ public class PFDKGuiXe extends javax.swing.JPanel {
                 vt.setBienSo(BSX);
                 vt.setLoaiXe(DangKyVeThangDAO.get_LoaiXe(BSX));
                 vt.setNgayDk(LocalDate.now());
-                
+                vt.setNgayHetHan(LocalDate.now().plusDays(30));
+                if (vt.getLoaiXe().equals("Xe máy")){
+                    vt.setSoTien(1);
+                }
+                else vt.setSoTien(2);
+                vt.setStatus("Dang su dung");
+                new FThanhToan(vt).setVisible(true);
                 
             }
 //            else if (txtBSX.getText().equals("")) {
@@ -260,8 +281,18 @@ public class PFDKGuiXe extends javax.swing.JPanel {
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //        }
-    new FThanhToan().setVisible(true);
+    
     }//GEN-LAST:event_btnTiepTucActionPerformed
+
+    private void btnTiepTucMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTiepTucMouseEntered
+        // TODO add your handling code here:
+        btnTiepTuc.setBackground(new Color(102,102,255));
+    }//GEN-LAST:event_btnTiepTucMouseEntered
+
+    private void btnTiepTucMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTiepTucMouseExited
+        // TODO add your handling code here:
+        btnTiepTuc.setBackground(new Color(190,190,255));
+    }//GEN-LAST:event_btnTiepTucMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

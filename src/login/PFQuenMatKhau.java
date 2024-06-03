@@ -163,6 +163,7 @@ public class PFQuenMatKhau extends PanelCustom {
                 Border RedLine = BorderFactory.createLineBorder(Color.red);
                 txtSDT.setBorder(RedLine);
             } else {
+                    System.out.println("hi");
                     txtTaiKhoan.setText(tk.getTaiKhoan());
                     lbPass.setText(tk.getMatKhau());
              }

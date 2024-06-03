@@ -103,10 +103,18 @@ public class PFNhapThongTinXe extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel6.setText("BSX");
 
-        btnXoa.setBackground(new java.awt.Color(102, 102, 255));
+        btnXoa.setBackground(new java.awt.Color(190, 190, 255));
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icons8-delete-32.png"))); // NOI18N
         btnXoa.setText("XÓA");
+        btnXoa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXoaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXoaMouseExited(evt);
+            }
+        });
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -156,10 +164,18 @@ public class PFNhapThongTinXe extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setBackground(new java.awt.Color(102, 102, 255));
+        btnThem.setBackground(new java.awt.Color(190, 190, 255));
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icons8-add-32.png"))); // NOI18N
         btnThem.setText("THÊM");
+        btnThem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemMouseExited(evt);
+            }
+        });
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemActionPerformed(evt);
@@ -324,6 +340,26 @@ public class PFNhapThongTinXe extends javax.swing.JPanel {
 //            e.printStackTrace();
 //        }
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseEntered
+        // TODO add your handling code here:
+        btnThem.setBackground(new Color(102,102,255));
+    }//GEN-LAST:event_btnThemMouseEntered
+
+    private void btnThemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemMouseExited
+        // TODO add your handling code here:
+        btnThem.setBackground(new Color(190,190,255));
+    }//GEN-LAST:event_btnThemMouseExited
+
+    private void btnXoaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseEntered
+        // TODO add your handling code here:
+        btnXoa.setBackground(new Color(102,102,255));
+    }//GEN-LAST:event_btnXoaMouseEntered
+
+    private void btnXoaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaMouseExited
+        // TODO add your handling code here:
+        btnXoa.setBackground(new Color(190,190,255));
+    }//GEN-LAST:event_btnXoaMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

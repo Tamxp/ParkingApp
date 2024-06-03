@@ -3,7 +3,6 @@ package login;
 import DAO.DangNhapDAO;
 import DTO.AccountDTO;
 import UI.FMenuManager;
-import UI.FMenuResident;
 import UI.FMenuStaff;
 import UI.JFmenuResident;
 import java.awt.Color;

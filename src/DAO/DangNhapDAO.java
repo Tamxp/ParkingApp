@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import DAO.Convert_PW;
+
 import DTO.AccountDTO;
 import DTO.INFO_TKCD;
 import DTO.INFO_TKNV;
@@ -94,8 +94,8 @@ public class DangNhapDAO extends KetNoiDAO {
     }
 
     public int checkNhanVien(String maNV){
-        try {
-            int x=0;
+        int x=0;
+        try {   
             Connection con2 = KetNoiDAO.getKetNoiDAO();
             String sql= "select * from NHAN_VIEN where MANV=?";
             PreparedStatement ps = con2.prepareStatement(sql);
@@ -103,16 +103,12 @@ public class DangNhapDAO extends KetNoiDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 x=rs.getInt(8);
-            }
-            if (x==1) return 1;
-            else if (x==2) return 2;
-            else return 0;
-                 
+            }     
         } catch (Exception e) {
             e.printStackTrace();
             
         } 
-        return -1;
+        return x;
     }
     
     public AccountDTO CheckPhone(String phone) {
@@ -137,7 +133,7 @@ public class DangNhapDAO extends KetNoiDAO {
                 ResultSet rs2 = ps2.executeQuery();
                 if (rs2.next()) {
                     tk = new AccountDTO();
-                    tk.setTaiKhoan(rs.getString(2));
+                    tk.setTaiKhoan(rs2.getString(2));
                     tk.setMatKhau("123");
                     setMK("TAIKHOAN_CD", phone);
                 }
@@ -376,11 +372,12 @@ public class DangNhapDAO extends KetNoiDAO {
             //CallableStatement cs = KetNoiDAO.getKetNoiDAO().prepareCall("{call Login_Find_User(?)}");
             Connection conn = KetNoiDAO.getKetNoiDAO();
             String sql="select * from CUDAN where MACD=?";
+            ps = conn.prepareStatement(sql);
             ps.setString(1, ma);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 tk = new INFO_TKCD();
-                tk.setMaNV(rs.getString(1));
+                tk.setMaCD(rs.getString(1));
                 tk.setHoTen(rs.getString(2));
                 tk.setSDT(rs.getString(3));
                 tk.setCCCD(rs.getString(4));
@@ -418,8 +415,7 @@ public class DangNhapDAO extends KetNoiDAO {
                 ps1.setInt(1, x);
                 ResultSet rs1 = ps1.executeQuery();
                 if (rs1.next()){
-                    nx.setChucVu(rs1.getString(4));
-                    nx.setLuong(rs1.getString(3));
+                    nx.setChucVu(rs1.getString(2));
                 }
                 INFO_NV.add(nx);
             }
@@ -454,7 +450,6 @@ public class DangNhapDAO extends KetNoiDAO {
                 if (rs1.next()){
                     nx.setChucVu(rs1.getString(2));
                     nx.setLoaiNV(rs1.getString(3));
-                    nx.setLuong(rs1.getString(4));
                 }
             }
         } catch (Exception e) {
@@ -533,7 +528,7 @@ public class DangNhapDAO extends KetNoiDAO {
             INFO_CD.removeAll(INFO_CD);
             while (rs.next()) {
                 nx = new INFO_TKCD();
-                nx.setMaNV(rs.getString(1));
+                nx.setMaCD(rs.getString(1));
                 nx.setHoTen(rs.getString(2));
                 nx.setSDT(rs.getString(3));
                 nx.setCCCD(rs.getString(4));
@@ -557,7 +552,7 @@ public class DangNhapDAO extends KetNoiDAO {
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 nx = new INFO_TKCD();
-                nx.setMaNV(rs.getString(1));
+                nx.setMaCD(rs.getString(1));
                 nx.setHoTen(rs.getString(2));
                 nx.setSDT(rs.getString(3));
                 nx.setCCCD(rs.getString(4));

@@ -24,10 +24,20 @@ public class TongXeDTO {
     private String gioTra;
     private int ID_CT_HOADON;
     private int giaTien;
+    private String maNV;
 
     public TongXeDTO() {
     }
 
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    
     public int getStt() {
         return stt;
     }

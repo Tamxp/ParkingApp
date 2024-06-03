@@ -6,6 +6,7 @@ package UI;
 
 import DAO.DangNhapDAO;
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -113,6 +114,14 @@ public class FCapNhatCD extends javax.swing.JFrame {
         THEM.setBackground(new java.awt.Color(102, 102, 255));
         THEM.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         THEM.setText("CẬP NHẬT");
+        THEM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                THEMMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                THEMMouseExited(evt);
+            }
+        });
         THEM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 THEMActionPerformed(evt);
@@ -352,6 +361,18 @@ public class FCapNhatCD extends javax.swing.JFrame {
          lbMANV.setText("");
          MANV.setBorder(null);
     }//GEN-LAST:event_MANVMouseClicked
+
+    private void THEMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_THEMMouseEntered
+        // TODO add your handling code here:
+        THEM.setFont(new Font(THEM.getFont().getName(), Font.BOLD, THEM.getFont().getSize()));
+        THEM.setForeground(Color.WHITE);
+    }//GEN-LAST:event_THEMMouseEntered
+
+    private void THEMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_THEMMouseExited
+        // TODO add your handling code here:
+        THEM.setFont(new Font(THEM.getFont().getName(), Font.PLAIN, THEM.getFont().getSize()));
+        THEM.setForeground(Color.BLACK);
+    }//GEN-LAST:event_THEMMouseExited
 
     /**
      * @param args the command line arguments

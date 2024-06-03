@@ -6,6 +6,8 @@ package UI;
 
 import DAO.DangNhapDAO;
 import java.awt.Color;
+import java.awt.Font;
+import java.time.Month;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -24,6 +26,23 @@ public class FThemCD extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         this.setTitle("PHẦN MỀN QUẢN LÝ BÃI GỬI XE");
+    }
+    public boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+    
+    public int getDaysOfMonth(int month,int year) {
+        // Tháng 2 có thể có 28 hoặc 29 ngày
+        if (month == Month.FEBRUARY.getValue()) {
+             if(isLeapYear(year)){
+                 return 29;
+             }else return 28;
+        // Các tháng 4, 6, 9, 11 có 30 ngày
+        } else if (month == Month.APRIL.getValue() || month == Month.JUNE.getValue() ||
+                   month == Month.SEPTEMBER.getValue() || month == Month.NOVEMBER.getValue()) {
+            return 30;
+          // Các tháng còn lại có 31 ngày
+        }else return 31;
     }
 
     /**
@@ -106,8 +125,18 @@ public class FThemCD extends javax.swing.JFrame {
         ngay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         thang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        thang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                thangItemStateChanged(evt);
+            }
+        });
 
         nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1975", "1978", "1979", "1980", "1981", "1982", "1983", "1985", "1986", "1987", "1988", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1998", "1999", "2000", "2001", "2002", "2003" }));
+        nam.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                namItemStateChanged(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("Số điện thoại");
@@ -130,6 +159,14 @@ public class FThemCD extends javax.swing.JFrame {
         THEM.setBackground(new java.awt.Color(102, 102, 255));
         THEM.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         THEM.setText("THÊM CƯ DÂN");
+        THEM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                THEMMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                THEMMouseExited(evt);
+            }
+        });
         THEM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 THEMActionPerformed(evt);
@@ -179,7 +216,6 @@ public class FThemCD extends javax.swing.JFrame {
                                             .addGroup(jPanel2Layout.createSequentialGroup()
                                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(14, 14, 14)))
-                                        .addGap(18, 18, 18)
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(CCCD, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(lbSDT, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,6 +400,40 @@ public class FThemCD extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_THEMActionPerformed
+
+    private void THEMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_THEMMouseEntered
+        // TODO add your handling code here:
+        THEM.setFont(new Font(THEM.getFont().getName(), Font.BOLD, THEM.getFont().getSize()));
+        THEM.setForeground(Color.WHITE);
+    }//GEN-LAST:event_THEMMouseEntered
+
+    private void THEMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_THEMMouseExited
+        // TODO add your handling code here:
+        THEM.setFont(new Font(THEM.getFont().getName(), Font.PLAIN, THEM.getFont().getSize()));
+        THEM.setForeground(Color.BLACK);
+    }//GEN-LAST:event_THEMMouseExited
+
+    private void thangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_thangItemStateChanged
+        // TODO add your handling code here:
+        int Month=Integer.parseInt(thang.getSelectedItem().toString());
+        int Year= Integer.parseInt(nam.getSelectedItem().toString());
+        int Ngay=getDaysOfMonth(Month, Year);
+        ngay.removeAllItems();
+        for (int i = 1; i <= Ngay; i++) {
+            ngay.addItem(String.valueOf(i));
+        }
+    }//GEN-LAST:event_thangItemStateChanged
+
+    private void namItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namItemStateChanged
+        // TODO add your handling code here:
+        int Month=Integer.parseInt(thang.getSelectedItem().toString());
+        int Year= Integer.parseInt(nam.getSelectedItem().toString());
+        int Ngay=getDaysOfMonth(Month, Year);
+        ngay.removeAllItems();
+        for (int i = 1; i <= Ngay; i++) {
+            ngay.addItem(String.valueOf(i));
+        }
+    }//GEN-LAST:event_namItemStateChanged
 
     /**
      * @param args the command line arguments

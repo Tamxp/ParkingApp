@@ -9,6 +9,8 @@ import DAO.TongVeDAO;
 import DTO.NhapXeDTO;
 import DTO.TongVeDTO;
 import DTO.TongXeDTO;
+import java.awt.Color;
+import java.awt.Font;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -135,6 +137,14 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         btnThemVe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemVe.setFocusPainted(false);
         btnThemVe.setName("btnThemVe"); // NOI18N
+        btnThemVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemVeMouseExited(evt);
+            }
+        });
         btnThemVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemVeActionPerformed(evt);
@@ -152,6 +162,14 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         btnXoaVe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXoaVe.setFocusable(false);
         btnXoaVe.setName("btnXoaVe"); // NOI18N
+        btnXoaVe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXoaVeMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXoaVeMouseExited(evt);
+            }
+        });
         btnXoaVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaVeActionPerformed(evt);
@@ -169,6 +187,14 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         btnCapNhat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCapNhat.setFocusable(false);
         btnCapNhat.setName("btnCapNhatVe"); // NOI18N
+        btnCapNhat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnCapNhatMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnCapNhatMouseExited(evt);
+            }
+        });
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatActionPerformed(evt);
@@ -189,6 +215,14 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Làm mới");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -224,6 +258,17 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(412, 412, 412)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(134, 134, 134)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 75, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -239,33 +284,23 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnThemVe, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addGap(44, 44, 44)
-                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(76, 76, 76)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(44, 44, 44)
+                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addGap(76, 76, 76)
+                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 891, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(412, 412, 412)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(134, 134, 134)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 75, Short.MAX_VALUE))
+                .addContainerGap(514, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,14 +309,14 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(btnThemVe, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
@@ -312,15 +347,25 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
             if (selectedItem != null) {
                 String the = selectedItem.toString();
                 TongVeDAO tv = new TongVeDAO();
-                if (tv.reset(the) != 0) {
-                    JOptionPane.showMessageDialog(this, "Reset thẻ thành công");
-                    loadTable();
-                    loadMave();
-                }
-                else 
-                    JOptionPane.showMessageDialog(this, "Reset thẻ thất bại");
-            }
-            else
+                int response = JOptionPane.showConfirmDialog(
+                null,
+                "Bạn có chắc chắn reset không?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+                );
+                if (response == JOptionPane.YES_OPTION) {
+                    if (tv.reset(the) != 0) {
+                        JOptionPane.showMessageDialog(this, "Reset thẻ thành công");
+                        loadTable();
+                        loadMave();
+                    }
+                    else 
+                        JOptionPane.showMessageDialog(this, "Reset thẻ thất bại");
+                }else if (response == JOptionPane.NO_OPTION) {
+                } 
+                
+            }else
                 JOptionPane.showMessageDialog(this, "Không có thẻ để reset!");
         } catch (Exception e) {
             e.printStackTrace();
@@ -356,13 +401,25 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
             if (selectedItem != null) {
                 String ve = selectedItem.toString();
                 TongVeDAO tv = new TongVeDAO();
-                if (tv.xoaVe(ve) > 0) {
+                int response = JOptionPane.showConfirmDialog(
+                null,
+                "Bạn có chắc chắn xóa không?",
+                "Confirm",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+                );
+
+                // Xử lý phản hồi từ người dùng
+                if (response == JOptionPane.YES_OPTION) {
+                    if (tv.xoaVe(ve) > 0) {
                     JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thành công!");
                     loadTable();
                     loadMave();
-                }
-                else
-                    JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thất bại!");
+                    }
+                    else
+                        JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thất bại!");
+                } else if (response == JOptionPane.NO_OPTION) {
+                }  
             }
             else
                 JOptionPane.showMessageDialog(this, "Không có thẻ để xóa!");
@@ -373,7 +430,64 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void btnThemVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemVeMouseEntered
+        // TODO add your handling code here:
+        
+        btnThemVe.setFont(new Font(btnThemVe.getFont().getName(), Font.BOLD, btnThemVe.getFont().getSize()));
+        btnThemVe.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnThemVeMouseEntered
+
+    private void btnThemVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemVeMouseExited
+        // TODO add your handling code here:
+        
+        btnThemVe.setFont(new Font(btnThemVe.getFont().getName(), Font.PLAIN, btnThemVe.getFont().getSize()));
+        btnThemVe.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnThemVeMouseExited
+
+    private void btnXoaVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaVeMouseEntered
+        // TODO add your handling code here:
+        
+        btnXoaVe.setFont(new Font(btnXoaVe.getFont().getName(), Font.BOLD, btnXoaVe.getFont().getSize()));
+        btnXoaVe.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnXoaVeMouseEntered
+
+    private void btnXoaVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaVeMouseExited
+        // TODO add your handling code here:
+        
+        btnXoaVe.setFont(new Font(btnXoaVe.getFont().getName(), Font.PLAIN, btnXoaVe.getFont().getSize()));
+        btnXoaVe.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnXoaVeMouseExited
+
+    private void btnCapNhatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhatMouseEntered
+        // TODO add your handling code here:
+       
+        btnCapNhat.setFont(new Font(btnCapNhat.getFont().getName(), Font.BOLD, btnCapNhat.getFont().getSize()));
+        btnCapNhat.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnCapNhatMouseEntered
+
+    private void btnCapNhatMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhatMouseExited
+        // TODO add your handling code here:
+        
+        btnCapNhat.setFont(new Font(btnCapNhat.getFont().getName(), Font.PLAIN, btnCapNhat.getFont().getSize()));
+        btnCapNhat.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnCapNhatMouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        
+        jButton1.setFont(new Font(jButton1.getFont().getName(), Font.BOLD, jButton1.getFont().getSize()));
+        jButton1.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        
+        jButton1.setFont(new Font(jButton1.getFont().getName(), Font.PLAIN, jButton1.getFont().getSize()));
+        jButton1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jButton1MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

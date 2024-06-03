@@ -23,7 +23,7 @@ public class TongXeDAO extends KetNoiDAO {
             conn = KetNoiDAO.getKetNoiDAO();
             ps = conn.prepareStatement(sql);
             ps.setString(1, nx.getMaVe());
-            ps.setString(2, nx.getLoaiXe());
+            ps.setString(2, nx.getLoaiVe());
             ps.setString(3, nx.getBienSo());
             ps.setString(4, nx.getKhuVuc());
             String x=nx.getNgayGui()+" "+nx.getGioGui();
@@ -42,6 +42,22 @@ public class TongXeDAO extends KetNoiDAO {
         int x=0;
         try {
             String sql = "select * from CT_HOADON where ThoiGianTra='"+tgTra+"'";
+            conn = KetNoiDAO.getKetNoiDAO();
+            ps = conn.prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+            if(rs.next()){
+                x=rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return x;
+    }
+    
+    public int layMaCTHoaDon2(String maThe) throws Exception {
+        int x=0;
+        try {
+            String sql = "select * from CT_HOADON where ID_THE='"+maThe+"'";
             conn = KetNoiDAO.getKetNoiDAO();
             ps = conn.prepareStatement(sql);
             ResultSet rs= ps.executeQuery();

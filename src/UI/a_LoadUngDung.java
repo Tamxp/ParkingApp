@@ -1,5 +1,7 @@
 package UI;
 
+import main.Main;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -131,7 +133,7 @@ public class a_LoadUngDung extends javax.swing.JFrame {
                 if (i==80){
                     form.LoadindLabel.setText("Đang khởi động giao diện");
                 } if (i==100){
-                    new FLogin().setVisible(true);
+                    new Main().setVisible(true);
                     form.dispose();
                 }
                 form.LoadingBar.setValue(i);

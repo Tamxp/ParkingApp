@@ -38,6 +38,7 @@ public class TongVeDAO extends KetNoiDAO {
                 nx.setBienSo(rs.getString(5));
                 nx.setLoaiXe(rs.getString(8));
                 nx.setViTri(rs.getString(9));
+                nx.setStatus(rs.getString(4));
                 Timestamp timestamp = rs.getTimestamp(2);
                 if (timestamp!=null){
                     LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
@@ -139,8 +140,8 @@ public class TongVeDAO extends KetNoiDAO {
             while (rs.next()) {
                 nx = new NhapXeDTO();
                 nx.setMaVe(rs.getString(1));
-                nx.setBienSo(rs.getString(5));
-                nx.setLoaiXe(rs.getString(7));
+                nx.setBienSo(rs.getString(4));
+                nx.setStatus(rs.getString(6));
                 Timestamp timestamp = rs.getTimestamp(2);
                 if (timestamp!=null){
                     LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
@@ -164,9 +165,10 @@ public class TongVeDAO extends KetNoiDAO {
                 }
                 String sql1 = "select *from XE where BSX='"+nx.getBienSo()+"'";
                 Statement st1 = conn.createStatement();
-                ResultSet rs1 = st.executeQuery(sql);
-                if (rs.next()){
+                ResultSet rs1 = st1.executeQuery(sql1);
+                if (rs1.next()){
                     nx.setMaCD(rs1.getString(3));
+                    nx.setLoaiXe(rs1.getString(2));
                 }
                 veXelist.add(nx);
             }
@@ -182,7 +184,7 @@ public class TongVeDAO extends KetNoiDAO {
         String ma="";
         try {
             Connection conn = KetNoiDAO.getKetNoiDAO();
-            String sql = "select *from THETHANG where Status='Het han'";
+            String sql = "select *from THETHANG where Status='Het han' or Status='Khong su dung'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(sql);
             veXelist.removeAll(veXelist);

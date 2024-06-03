@@ -20,41 +20,6 @@ public class NhapXeDAO extends KetNoiDAO {
 
     Connection conn = null;
     PreparedStatement ps = null;
-//    public static ArrayList<String> LoadComboBoxChonVe() {
-//        ArrayList<String> list = new ArrayList<String>();
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "select * from LOAIVE";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                list.add(rs.getString(1));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
-
-//    public NhapXeDTO load2Text(String mave) {
-//        NhapXeDTO nx = null;
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "select * from TONGVE where vID =?";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ps.setString(1, mave);
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                nx = new NhapXeDTO();
-//                nx.setBienSo(rs.getString("BIENSO"));
-//                nx.setMauXe(rs.getString("MAUXE"));
-//                nx.setLoaiXe(rs.getString("LOAIXE"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return nx;
-//    }
 
     public static ArrayList<String> LoadComboBoxMaVe(String loaive) {
         ArrayList<String> list = new ArrayList<String>();
@@ -76,21 +41,6 @@ public class NhapXeDAO extends KetNoiDAO {
         return list;
     }
 
-//    public static ArrayList<String> LoadcbxLoaiXe() {
-//        ArrayList<String> list = new ArrayList<String>();
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "SELECT * FROM XE";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ResultSet rs1 = ps.executeQuery();
-//            while (rs1.next()) {
-//                list.add(rs1.getString(1));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
 
     public static ArrayList<String> LoadcbxKhuVuc(String loaixe) {
         ArrayList<String> list = new ArrayList<String>();
@@ -114,22 +64,6 @@ public class NhapXeDAO extends KetNoiDAO {
         return list;
     }
 
-//    public static ArrayList<String> LoadcbxViTri(String loaive) {
-//        ArrayList<String> list = new ArrayList<String>();
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "select VITRI from KHUVUCOT where not EXISTS(select NHAPXE.VITRI from NHAPXE where NHAPXE.VITRI=KHUVUCOT.VITRI) and LOAIVE=?";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ps.setString(1, loaive);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                list.add(rs.getString(1));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
 
     public int ThemXe(NhapXeDTO nx) throws Exception {
         try {
@@ -193,7 +127,7 @@ public class NhapXeDAO extends KetNoiDAO {
         boolean tk = false;
         try {
             Connection conn = KetNoiDAO.getKetNoiDAO();
-            String sql = "SELECT CONVERT(date, NGAYHETHAN) AS Ngay FROM THETHANG where ID='" + ma + "'";
+            String sql = "SELECT CONVERT(date, NGAYHETHAN) AS Ngay FROM THETHANG where ID='" + ma + "' and Status='Dang su dung'";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -248,8 +182,7 @@ public class NhapXeDAO extends KetNoiDAO {
             String sql = "insert into LUOT_RAVAO(ID_THE,Thoigianvao) values(?,'"+formattedDate+"')";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, ID);
-            
-            ps.executeQuery();
+            ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -272,22 +205,4 @@ public class NhapXeDAO extends KetNoiDAO {
         }
         return check;
     }
-    
-    
-//    public NhapXeDTO checkVe(String mave) {
-//        NhapXeDTO tk = null;
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "select MAVE from NHAPXE where MAVE='" + mave + "'";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                tk = new NhapXeDTO();
-//                tk.setMaVe(rs.getString(1));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return tk;
-//    }
 }

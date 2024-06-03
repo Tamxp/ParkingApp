@@ -6,6 +6,8 @@ package UI;
 
 import DAO.TraXeDAO;
 import DTO.NhapXeDTO;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -206,6 +208,14 @@ public class PFTraXe extends javax.swing.JPanel {
         btnTimKiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTimKiem.setFocusPainted(false);
         btnTimKiem.setName("btnTimKiem"); // NOI18N
+        btnTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTimKiemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTimKiemMouseExited(evt);
+            }
+        });
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -232,6 +242,14 @@ public class PFTraXe extends javax.swing.JPanel {
         btnInHoaDon.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnInHoaDon.setFocusPainted(false);
         btnInHoaDon.setName("btnInHoaDon"); // NOI18N
+        btnInHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnInHoaDonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnInHoaDonMouseExited(evt);
+            }
+        });
         btnInHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnInHoaDonActionPerformed(evt);
@@ -249,6 +267,14 @@ public class PFTraXe extends javax.swing.JPanel {
         btnLamMoi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnLamMoi.setFocusPainted(false);
         btnLamMoi.setName("btnLamMoi"); // NOI18N
+        btnLamMoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnLamMoiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnLamMoiMouseExited(evt);
+            }
+        });
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiActionPerformed(evt);
@@ -310,6 +336,14 @@ public class PFTraXe extends javax.swing.JPanel {
         btnXacNhan.setBorderPainted(false);
         btnXacNhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXacNhan.setName("btnXacNhan"); // NOI18N
+        btnXacNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXacNhanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXacNhanMouseExited(evt);
+            }
+        });
         btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXacNhanActionPerformed(evt);
@@ -758,6 +792,54 @@ public class PFTraXe extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnXacNhanActionPerformed
+
+    private void btnXacNhanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseEntered
+        // TODO add your handling code here:
+        btnXacNhan.setFont(new Font(btnXacNhan.getFont().getName(), Font.BOLD, btnXacNhan.getFont().getSize()));
+        btnXacNhan.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnXacNhanMouseEntered
+
+    private void btnXacNhanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseExited
+        // TODO add your handling code here:
+        btnXacNhan.setFont(new Font(btnXacNhan.getFont().getName(), Font.PLAIN, btnXacNhan.getFont().getSize()));
+        btnXacNhan.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnXacNhanMouseExited
+
+    private void btnTimKiemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseEntered
+        // TODO add your handling code here:
+        btnTimKiem.setFont(new Font(btnTimKiem.getFont().getName(), Font.BOLD, btnTimKiem.getFont().getSize()));
+        btnTimKiem.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTimKiemMouseEntered
+
+    private void btnTimKiemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseExited
+        // TODO add your handling code here:
+        btnTimKiem.setFont(new Font(btnTimKiem.getFont().getName(), Font.PLAIN, btnTimKiem.getFont().getSize()));
+        btnTimKiem.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTimKiemMouseExited
+
+    private void btnInHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInHoaDonMouseEntered
+        // TODO add your handling code here:
+        btnInHoaDon.setFont(new Font(btnInHoaDon.getFont().getName(), Font.BOLD, btnInHoaDon.getFont().getSize()));
+        btnInHoaDon.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnInHoaDonMouseEntered
+
+    private void btnInHoaDonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnInHoaDonMouseExited
+        // TODO add your handling code here:
+        btnInHoaDon.setFont(new Font(btnInHoaDon.getFont().getName(), Font.PLAIN, btnInHoaDon.getFont().getSize()));
+        btnInHoaDon.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnInHoaDonMouseExited
+
+    private void btnLamMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLamMoiMouseEntered
+        // TODO add your handling code here:
+        btnLamMoi.setFont(new Font(btnLamMoi.getFont().getName(), Font.BOLD, btnLamMoi.getFont().getSize()));
+        btnLamMoi.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnLamMoiMouseEntered
+
+    private void btnLamMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnLamMoiMouseExited
+        // TODO add your handling code here:
+        btnLamMoi.setFont(new Font(btnLamMoi.getFont().getName(), Font.PLAIN, btnLamMoi.getFont().getSize()));
+        btnLamMoi.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnLamMoiMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

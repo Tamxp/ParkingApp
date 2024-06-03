@@ -6,6 +6,7 @@ package main;
 
 import DAO.NhapXeDAO;
 import UI.FMenuManager;
+import UI.a_LoadUngDung;
 import form.Home;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -30,26 +31,7 @@ public class Main extends javax.swing.JFrame {
         Image newImage = icon.getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH);
         this.setIconImage(newImage);
         load();
-//        home = new Home();
-//        EventLogin event = new EventLogin() {
-            //@Override
-//            public void loginDone() {
-//                main.removeAll();
-//                main.revalidate();
-//                main.repaint();
-//            }
-
-            //@Override
-//            public void logOut() {
-//                main.removeAll();
-//                main.add(loginAndRegister1);
-//                main.revalidate();
-//                main.repaint();
-//            }
-       // };
-        //loginAndRegister1.setEventLogin(event);
         loginAndRegister1.showLogin(true);
-        //home.setEventLogin(event);
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
     }
@@ -168,8 +150,9 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                //new a_LoadUngDung().setVisible(true);
                 Main mainFrame = new Main();
-        mainFrame.setVisible(true);
+                mainFrame.setVisible(true);
     
     /* Thực hiện đăng nhập và các hoạt động khác */
         EventQueue.invokeLater(() -> {

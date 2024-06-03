@@ -6,6 +6,8 @@ package UI;
 
 import DAO.TraXeDAO;
 import DTO.NhapXeDTO;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -139,6 +141,14 @@ public class PFTraLichSu extends javax.swing.JPanel {
         btnTimKiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTimKiem.setFocusPainted(false);
         btnTimKiem.setName("btnTimKiem"); // NOI18N
+        btnTimKiem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTimKiemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTimKiemMouseExited(evt);
+            }
+        });
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
@@ -268,6 +278,18 @@ public class PFTraLichSu extends javax.swing.JPanel {
             }
         }
     }//GEN-LAST:event_txtTimKiemKeyPressed
+
+    private void btnTimKiemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseEntered
+        // TODO add your handling code here:
+        btnTimKiem.setFont(new Font(btnTimKiem.getFont().getName(), Font.BOLD, btnTimKiem.getFont().getSize()));
+        btnTimKiem.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTimKiemMouseEntered
+
+    private void btnTimKiemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimKiemMouseExited
+        // TODO add your handling code here:
+        btnTimKiem.setFont(new Font(btnTimKiem.getFont().getName(), Font.PLAIN, btnTimKiem.getFont().getSize()));
+        btnTimKiem.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTimKiemMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

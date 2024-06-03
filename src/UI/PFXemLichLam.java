@@ -9,12 +9,14 @@ import DAO.NhapXeDAO;
 import DTO.NhapXeDTO;
 import DTO.lichlamviec;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JComboBox;
@@ -40,8 +42,25 @@ public class PFXemLichLam extends javax.swing.JPanel {
         loadTable1();
     }
 
+    public boolean isLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
     
-public void loadTable1() {
+    public int getDaysOfMonth(int month,int year) {
+        // Tháng 2 có thể có 28 hoặc 29 ngày
+        if (month == Month.FEBRUARY.getValue()) {
+             if(isLeapYear(year)){
+                 return 29;
+             }else return 28;
+        // Các tháng 4, 6, 9, 11 có 30 ngày
+        } else if (month == Month.APRIL.getValue() || month == Month.JUNE.getValue() ||
+                   month == Month.SEPTEMBER.getValue() || month == Month.NOVEMBER.getValue()) {
+            return 30;
+          // Các tháng còn lại có 31 ngày
+        }else return 31;
+    }
+    
+    public void loadTable1() {
         ArrayList<lichlamviec> list = LichLamViecDAO.xemCaLam1(ma);
         DefaultTableModel tblModel = (DefaultTableModel)jTable1.getModel();
         Object[] row = new Object[4];
@@ -121,6 +140,14 @@ public void loadTable2(String tuNgay, String denNgay) {
         XEM.setBorderPainted(false);
         XEM.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         XEM.setName("XEM"); // NOI18N
+        XEM.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                XEMMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                XEMMouseExited(evt);
+            }
+        });
         XEM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 XEMActionPerformed(evt);
@@ -153,14 +180,34 @@ public void loadTable2(String tuNgay, String denNgay) {
         ngay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         thang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        thang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                thangItemStateChanged(evt);
+            }
+        });
 
-        nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032" }));
+        nam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032" }));
+        nam.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                namItemStateChanged(evt);
+            }
+        });
 
         ngay2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
 
         thang2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        thang2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                thang2ItemStateChanged(evt);
+            }
+        });
 
-        nam2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032" }));
+        nam2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032" }));
+        nam2.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nam2ItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setText("Ngày");
 
@@ -273,6 +320,62 @@ public void loadTable2(String tuNgay, String denNgay) {
         String denNgay=(String)nam2.getSelectedItem()+"-"+(String)thang2.getSelectedItem()+"-"+(String)ngay2.getSelectedItem();
         loadTable2(tuNgay,denNgay);
     }//GEN-LAST:event_XEMActionPerformed
+
+    private void thangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_thangItemStateChanged
+        // TODO add your handling code here:
+        int Month=Integer.parseInt(thang.getSelectedItem().toString());
+        int Year= Integer.parseInt(nam.getSelectedItem().toString());
+        int Ngay=getDaysOfMonth(Month, Year);
+        ngay.removeAllItems();
+        for (int i = 1; i <= Ngay; i++) {
+            ngay.addItem(String.valueOf(i));   
+        }
+    }//GEN-LAST:event_thangItemStateChanged
+
+    private void thang2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_thang2ItemStateChanged
+        // TODO add your handling code here:
+        int Month=Integer.parseInt(thang2.getSelectedItem().toString());
+        int Year= Integer.parseInt(nam2.getSelectedItem().toString());
+        int Ngay=getDaysOfMonth(Month, Year);
+        ngay2.removeAllItems();
+        for (int i = 1; i <= Ngay; i++) {
+            ngay2.addItem(String.valueOf(i));   
+        }
+    }//GEN-LAST:event_thang2ItemStateChanged
+
+    private void namItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namItemStateChanged
+        // TODO add your handling code here:
+        int Month=Integer.parseInt(thang.getSelectedItem().toString());
+        int Year= Integer.parseInt(nam.getSelectedItem().toString());
+        int Ngay=getDaysOfMonth(Month, Year);
+        ngay.removeAllItems();
+        for (int i = 1; i <= Ngay; i++) {
+            ngay.addItem(String.valueOf(i));   
+        }
+    }//GEN-LAST:event_namItemStateChanged
+
+    private void nam2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nam2ItemStateChanged
+        // TODO add your handling code here:
+        int Month=Integer.parseInt(thang2.getSelectedItem().toString());
+        int Year= Integer.parseInt(nam2.getSelectedItem().toString());
+        int Ngay=getDaysOfMonth(Month, Year);
+        ngay2.removeAllItems();
+        for (int i = 1; i <= Ngay; i++) {
+            ngay2.addItem(String.valueOf(i));   
+        }
+    }//GEN-LAST:event_nam2ItemStateChanged
+
+    private void XEMMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XEMMouseEntered
+        // TODO add your handling code here:
+        XEM.setFont(new Font(XEM.getFont().getName(), Font.BOLD, XEM.getFont().getSize()));
+        XEM.setForeground(Color.WHITE);
+    }//GEN-LAST:event_XEMMouseEntered
+
+    private void XEMMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XEMMouseExited
+        // TODO add your handling code here:
+        XEM.setFont(new Font(XEM.getFont().getName(), Font.PLAIN, XEM.getFont().getSize()));
+        XEM.setForeground(Color.BLACK);
+    }//GEN-LAST:event_XEMMouseExited
 
 
     

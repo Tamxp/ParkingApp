@@ -175,6 +175,45 @@ public class LichLamViecDAO extends KetNoiDAO {
         return lichlam;
     }
     
+    public static ArrayList<lichlamviec>loadTimKiem(String ma) {
+        ArrayList<lichlamviec> lichlam = new ArrayList<>();
+        try {
+            lichlamviec lv = null;
+            Connection conn = KetNoiDAO.getKetNoiDAO();
+            String sql = "select * from LICHLAMVIEC where MANV=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, ma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lv = new lichlamviec();
+                lv.setMaCa(rs.getString(1));
+                Date x=rs.getDate(2);
+                lv.setNgay(x.toLocalDate());
+                lv.setMaNV(rs.getString(3));
+                String sql1="select * from CA where MACA=?";
+                PreparedStatement ps1 = conn.prepareStatement(sql1);
+                ps1.setString(1, lv.getMaCa());
+                ResultSet rs1 = ps1.executeQuery();
+                if(rs1.next()){
+                    lv.setGioBatDau(rs1.getTime(3).toString());
+                    lv.setGioKetThuc(rs1.getTime(4).toString());
+                    lv.setTenCa(rs1.getString(2));
+                }
+                String sql2="select * from NHAN_VIEN where MANV=?";
+                PreparedStatement ps2 = conn.prepareStatement(sql2);
+                ps2.setString(1, lv.getMaNV());
+                ResultSet rs2 = ps2.executeQuery();
+                if(rs2.next()){
+                    lv.setTenNV(rs2.getString(2));
+                }
+                lichlam.add(lv);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lichlam;
+    }
+    
     public int capNhatLich(String ngay,String maCa, String maNV) {
         int x=0;
         try {

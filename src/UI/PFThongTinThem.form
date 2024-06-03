@@ -21,7 +21,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jLabel10" alignment="1" pref="1000" max="32767" attributes="0"/>
+          <Component id="jLabel10" alignment="1" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -64,6 +64,9 @@
           <Font name="Segoe UI" size="24" style="0"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/UI/Image/icon2.jpg"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="C&#xf4;ng ngh&#x1ec7; ph&#x1ea7;n m&#x1ec1;m"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="verticalAlignment" type="int" value="3"/>
@@ -128,7 +131,7 @@
           <Font name="Segoe UI" size="18" style="2"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="T&#xea;n &#x110;&#x1ed3; &#xc1;n: Qu&#x1ea3;n L&#xfd; B&#xe3;i G&#x1eed;i Xe"/>
+        <Property name="text" type="java.lang.String" value="T&#xea;n &#x110;&#x1ed3; &#xc1;n: Qu&#x1ea3;n L&#xfd; B&#xe3;i G&#x1eed;i Xe &#x1ede; Chung C&#x1b0;"/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
       </Properties>
     </Component>

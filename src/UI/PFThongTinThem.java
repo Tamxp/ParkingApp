@@ -20,18 +20,10 @@ public class PFThongTinThem extends javax.swing.JPanel {
     public PFThongTinThem() {
         initComponents();
         setSize(1040,545);
-        scaleImage1();
     }
     
     
-    public void scaleImage1(){
-        ImageIcon icon=new ImageIcon("C:\\Users\\Le Chuong\\OneDrive\\Máy tính\\Logo_PTIT.jpg");
-        Image img=icon.getImage();
-        Image imgScale=img.getScaledInstance(200,200, Image.SCALE_SMOOTH);
-        ImageIcon scaleIcon=new ImageIcon(imgScale);
-        jLabel10.setIcon(scaleIcon);
-        
-    }
+
 
 
     /**
@@ -55,6 +47,7 @@ public class PFThongTinThem extends javax.swing.JPanel {
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icon2.jpg"))); // NOI18N
         jLabel10.setText("Công nghệ phần mềm");
         jLabel10.setToolTipText("");
         jLabel10.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -89,14 +82,14 @@ public class PFThongTinThem extends javax.swing.JPanel {
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 18)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Tên Đồ Án: Quản Lý Bãi Gửi Xe");
+        jLabel6.setText("Tên Đồ Án: Quản Lý Bãi Gửi Xe Ở Chung Cư");
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

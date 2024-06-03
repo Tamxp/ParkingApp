@@ -4,8 +4,13 @@
  */
 package UI;
 
+import DAO.DangNhapDAO;
 import DAO.LichLamViecDAO;
+import DTO.INFO_TKNV;
 import DTO.lichlamviec;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.time.Month;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -65,7 +70,7 @@ public class PFPhanLich extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Quản Lý Nhân Viên");
+        jLabel1.setText("Phân lịch");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Nhập mã nhân viên");
@@ -90,6 +95,14 @@ public class PFPhanLich extends javax.swing.JPanel {
         btnThemTK.setBorderPainted(false);
         btnThemTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemTK.setFocusPainted(false);
+        btnThemTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseExited(evt);
+            }
+        });
         btnThemTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemTKActionPerformed(evt);
@@ -123,6 +136,12 @@ public class PFPhanLich extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTimkiemMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTimkiemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTimkiemMouseExited(evt);
+            }
         });
         btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +156,12 @@ public class PFPhanLich extends javax.swing.JPanel {
         LamMoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LamMoiMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LamMoiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LamMoiMouseExited(evt);
             }
         });
         LamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -201,52 +226,49 @@ public class PFPhanLich extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
+                        .addGap(215, 215, 215)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(btnTimkiem)
+                        .addGap(39, 39, 39)
+                        .addComponent(LamMoi))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(thang, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(ngay, 0, 1, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(thang, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ngay, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(103, 103, 103)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(btnTimkiem)
-                                .addGap(39, 39, 39)
-                                .addComponent(LamMoi))
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(59, Short.MAX_VALUE))
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(26, 26, 26)
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(65, 65, 65)
+                        .addComponent(btnThemTK, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,7 +277,7 @@ public class PFPhanLich extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,7 +297,7 @@ public class PFPhanLich extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,21 +312,15 @@ public class PFPhanLich extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 992, Short.MAX_VALUE)
+            .addGap(0, 1004, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1004, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 499, Short.MAX_VALUE)
+            .addGap(0, 525, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public boolean isLeapYear(int year) {
@@ -381,6 +397,25 @@ public class PFPhanLich extends javax.swing.JPanel {
             tblModel.addRow(row);
         }
     }
+    
+    public void loadTable2(String ma) {
+        ArrayList<lichlamviec> list = LichLamViecDAO.loadTimKiem(ma);
+        DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
+        for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
+            tblModel.removeRow(i);
+        }
+        Object[] row = new Object[6];
+        for (int i = 0; i < list.size(); i++) {
+            row[0] = list.get(i).getNgay();
+            row[1] = list.get(i).getTenCa();
+            row[2] = list.get(i).getGioBatDau();
+            row[3] = list.get(i).getGioKetThuc();
+            row[4] = list.get(i).getMaNV();
+            row[5] = list.get(i).getTenNV();
+            tblModel.addRow(row);
+        }
+    }
+    
     private void btnThemTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTKActionPerformed
         
          String ca1 = jComboBox1.getSelectedItem().toString();
@@ -432,47 +467,26 @@ public class PFPhanLich extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTimkiemFocusGained
 
     private void txtTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimkiemMouseClicked
-//        txtTimkiem.setText("");
-//        txtTimkiem.setForeground(Color.black);
+        txtTimkiem.setText("");
+        txtTimkiem.setForeground(Color.black);
     }//GEN-LAST:event_txtTimkiemMouseClicked
 
     private void txtTimkiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimkiemKeyPressed
-        ////        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ////            DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
-            ////            Object[] row = new Object[4];
-            ////            String checkAcc = txtTimkiem.getText();
-            ////            DangNhapDAO dn = new DangNhapDAO();
-            ////            AccountDTO ac = dn.CheckUser(txtTimkiem.getText());
-            ////            for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                ////                tblModel.removeRow(i);
-                ////            }
-            ////            if (ac != null) {
-                ////                row[0] = ac.getTenNguoidung();
-                ////                row[1] = ac.getSdt();
-                ////                row[2] = ac.getTaiKhoan();
-                ////                row[3] = ac.getMatKhau();
-                ////                tblModel.addRow(row);
-                ////                TableNhanVien.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-                    ////                    @Override
-                    ////                    public void valueChanged(ListSelectionEvent e) {
-                        ////                        if (TableNhanVien.getSelectedRow() >= 0) {
-                            ////                            txtTaikhoan.setEditable(false);
-                            ////                            txtTen.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 0));
-                            ////                            txtSdt.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 1));
-                            ////                            txtTaikhoan.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 2));
-                            ////                            txtPass.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 3));
-                            ////                        }
-                        ////                    }
-                    ////                });
-            ////                txtTimkiem.setText("Nhập tài khoản...");
-            ////                txtTimkiem.setForeground(new Color(153, 153, 153));
-            ////            } else {
-            ////                JOptionPane.showMessageDialog(this, "Không tìm thấy tài khoản");
-            ////                txtTimkiem.setText("Nhập tài khoản...");
-            ////                txtTimkiem.setForeground(new Color(153, 153, 153));
-            ////                loadTabel();
-            ////            }
-        ////        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+             DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
+            Object[] row = new Object[6];
+            String manv = txtTimkiem.getText();
+            DangNhapDAO dn = new DangNhapDAO();
+            if (txtTimkiem.getText().contains("Nhập mã NV...") == true) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
+            } else if (txtTimkiem.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
+                txtTimkiem.setText("Nhập mã NV...");
+                txtTimkiem.setForeground(new Color(153, 153, 153));
+            } else {
+                loadTable2(manv);
+            }          
+        }
     }//GEN-LAST:event_txtTimkiemKeyPressed
 
     private void btnTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseClicked
@@ -480,28 +494,19 @@ public class PFPhanLich extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTimkiemMouseClicked
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-//        DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
-//        Object[] row = new Object[10];
-//        String manv = txtTimkiem.getText();
-//        DangNhapDAO dn = new DangNhapDAO();
-//        if (txtTimkiem.getText().contains("Nhập tài khoản...") == true) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
-//        } else if (txtTimkiem.getText().equals("")) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
-//            txtTimkiem.setText("Nhập tài khoản...");
-//            txtTimkiem.setForeground(new Color(153, 153, 153));
-//        } else {
-//            INFO_TKNV nx=dn.tableInfo2(manv);
-//            if (nx!=null){
-//                loadTabel2(nx);
-//            }
-//            else {
-//                JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên");
-//                txtTimkiem.setText("Nhập tài khoản...");
-//                txtTimkiem.setForeground(new Color(153, 153, 153));
-//                loadTabel();
-//            }
-//        }
+        DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
+        Object[] row = new Object[6];
+        String manv = txtTimkiem.getText();
+        DangNhapDAO dn = new DangNhapDAO();
+        if (txtTimkiem.getText().contains("Nhập mã NV...") == true) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
+        } else if (txtTimkiem.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
+            txtTimkiem.setText("Nhập mã NV...");
+            txtTimkiem.setForeground(new Color(153, 153, 153));
+        } else {
+                loadTable2(manv);
+        }
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
     private void LamMoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseClicked
@@ -510,9 +515,9 @@ public class PFPhanLich extends javax.swing.JPanel {
 
     private void LamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LamMoiActionPerformed
         // TODO add your handling code here:
-//        txtTimkiem.setText("Nhập tài khoản...");
-//        txtTimkiem.setForeground(new Color(153, 153, 153));
-//        loadTabel();
+        txtTimkiem.setText("Nhập tài khoản...");
+        txtTimkiem.setForeground(new Color(153, 153, 153));
+        loadTable();
     }//GEN-LAST:event_LamMoiActionPerformed
 
     private void thangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_thangItemStateChanged
@@ -524,6 +529,9 @@ public class PFPhanLich extends javax.swing.JPanel {
 
     private void namItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_namItemStateChanged
         // TODO add your handling code here:
+        int month=Integer.parseInt(thang.getSelectedItem().toString());
+        int year= Integer.parseInt(nam.getSelectedItem().toString());
+        getDaysOfMonth(month, year);
     }//GEN-LAST:event_namItemStateChanged
 
     private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox2ItemStateChanged
@@ -563,6 +571,42 @@ public class PFPhanLich extends javax.swing.JPanel {
 //            }
 //        }
     }//GEN-LAST:event_jComboBox3ItemStateChanged
+
+    private void btnThemTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseEntered
+        // TODO add your handling code here:
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.BOLD, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnThemTKMouseEntered
+
+    private void btnThemTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseExited
+        // TODO add your handling code here:
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.PLAIN, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnThemTKMouseExited
+
+    private void btnTimkiemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseEntered
+        // TODO add your handling code here:
+        btnTimkiem.setFont(new Font(btnTimkiem.getFont().getName(), Font.BOLD, btnTimkiem.getFont().getSize()));
+        btnTimkiem.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTimkiemMouseEntered
+
+    private void btnTimkiemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseExited
+        // TODO add your handling code here:
+        btnTimkiem.setFont(new Font(btnTimkiem.getFont().getName(), Font.PLAIN, btnTimkiem.getFont().getSize()));
+        btnTimkiem.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTimkiemMouseExited
+
+    private void LamMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseEntered
+        // TODO add your handling code here:
+        LamMoi.setFont(new Font(LamMoi.getFont().getName(), Font.BOLD, LamMoi.getFont().getSize()));
+        LamMoi.setForeground(Color.WHITE);
+    }//GEN-LAST:event_LamMoiMouseEntered
+
+    private void LamMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseExited
+        // TODO add your handling code here:
+        LamMoi.setFont(new Font(LamMoi.getFont().getName(), Font.PLAIN, LamMoi.getFont().getSize()));
+        LamMoi.setForeground(Color.BLACK);
+    }//GEN-LAST:event_LamMoiMouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,6 +7,7 @@ package UI;
 import DAO.NhapXeDAO;
 import DTO.NhapXeDTO;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -31,17 +32,13 @@ public class PFNhanXe extends javax.swing.JPanel {
     public PFNhanXe(String maNV) {
         initComponents();
         setSize(1000, 400);
-        //cbxLoaiXe.setSelectedItem("Chọn vé");
         autoDate();
         autoTime();
-//        loadChonVe();
-//        loadLoaiXe();
         String loaixe =(String) cbxLoaiXe.getSelectedItem();
         loadcbxKhuVuc(loaixe);
         loadMave(loaive());
         MANV.setText(maNV);
         MANV.setEditable(false);
-//        loadcbxViTri(loaive);
     }
 
     private void autoDate() {
@@ -75,13 +72,6 @@ public class PFNhanXe extends javax.swing.JPanel {
         }
     }
 
-//    private void loadLoaiXe() {
-//        ArrayList<String> list = NhapXeDAO.LoadcbxLoaiXe();
-//        cbxLoaiXe.removeAllItems();
-//        for (String item : list) {
-//            //cbxLoaiXe.addItem(item.toString());
-//        }
-//    }
 
     private void loadcbxKhuVuc(String loaixe) {
         ArrayList<String> list = NhapXeDAO.LoadcbxKhuVuc(loaixe);
@@ -91,13 +81,6 @@ public class PFNhanXe extends javax.swing.JPanel {
         }
     }
 
-//    private void loadcbxViTri(String loaive) {
-//        ArrayList<String> list = NhapXeDAO.LoadcbxViTri(loaive);
-//        cbxViTri.removeAllItems();
-//        for (String item : list) {
-//            cbxViTri.addItem(item.toString());
-//        }
-//    }
 
     public NhapXeDTO addXe() {
         NhapXeDTO themxe = new NhapXeDTO();
@@ -107,13 +90,6 @@ public class PFNhanXe extends javax.swing.JPanel {
         themxe.setMaVe(cbxMave.getSelectedItem().toString());
         themxe.setMaNV(MANV.getText().toString());
         themxe.setViTri((String)cbxKhuVuc.getSelectedItem());
-//        themxe.setMauXe(txtMauxe.getText());
-//        themxe.setKhuVuc(cbxKhuVuc.getSelectedItem().toString());
-//        if (cbxLoaiXe.getSelectedItem().toString().equals("Xe máy")) {
-//            themxe.setViTri("");
-//        } else {
-//            //themxe.setViTri(cbxViTri.getSelectedItem().toString());
-//        }
         themxe.setNgayGui(LocalDate.parse(txtNgaynhan.getText()));
         themxe.setGioGui(txtGionhan.getText());
         int ID =0;
@@ -243,6 +219,14 @@ public class PFNhanXe extends javax.swing.JPanel {
         btnXacNhan.setBorderPainted(false);
         btnXacNhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnXacNhan.setName("btnXacNhan"); // NOI18N
+        btnXacNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnXacNhanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnXacNhanMouseExited(evt);
+            }
+        });
         btnXacNhan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXacNhanActionPerformed(evt);
@@ -402,22 +386,8 @@ public class PFNhanXe extends javax.swing.JPanel {
             } else if (loaixe.equals("Xe ô tô")) {
                  cbxKhuVuc.removeAllItems();
                  loadcbxKhuVuc("Xe ô tô");
-//                    cbxViTri.setEnabled(false);
-//                    cbxViTri.removeAllItems();
              }
         }
-//            } else if (cbxLoaive.getSelectedItem().toString().equals("Vé Tháng")) {
-//                if (cbxLoaiXe.getSelectedItem().toString().equals("Ô tô")) {
-////                    loadcbxKhuVuc("Ô tô", loaive);
-////                    loadcbxViTri(loaive);
-//                    //cbxViTri.setEnabled(true);
-//                } else if (cbxLoaiXe.getSelectedItem().toString().equals("Xe máy")) {
-//                    //loadcbxKhuVuc("Xe máy", loaive);
-////                    cbxViTri.setEnabled(false);
-////                    cbxViTri.removeAllItems();
-//                }
-//            }
-//        }
     }//GEN-LAST:event_cbxLoaiXeItemStateChanged
 
     private void cbxLoaiveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLoaiveItemStateChanged
@@ -425,7 +395,6 @@ public class PFNhanXe extends javax.swing.JPanel {
         cbxLoaive = (JComboBox<String>) evt.getSource();
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String loaive = (String)cbxLoaive.getSelectedItem();
-            //String khuvuc = cbxKhuVuc.getSelectedItem().toString();
             if (loaive.equals("Thẻ Lượt")==true) {
                 cbxLoaiXe.setEnabled(true);
                 txtBienso.setEnabled(true);
@@ -433,25 +402,6 @@ public class PFNhanXe extends javax.swing.JPanel {
                 MANV.setEnabled(true);
                 txtBienso.setText("");
                 loadMave(loaive());
-                    //cbxKhuVuc.setEnabled(true);
-                    //txtMauxe.setEnabled(true);     
-//                  txtMauxe.setText("");
-//                  cbxViTri.removeAllItems();
-//                  cbxKhuVuc.removeAllItems();
-                    //loadcbxKhuVuc(loaixe, loaive)         
-//              } else if (loaixe.equals("Ô tô")) {
-//                    cbxLoaiXe.setEnabled(true);
-//                    //cbxKhuVuc.setEnabled(true);
-//                    txtBienso.setEnabled(true);
-//                    //txtMauxe.setEnabled(true);
-//                    txtBienso.setText("");
-////                    txtMauxe.setText("");
-////                    cbxViTri.removeAllItems();
-////                    cbxKhuVuc.removeAllItems();
-////                    loadcbxKhuVuc(loaixe, loaive);
-////                    loadcbxViTri(loaive);
-//                    loadMave(loaive());
-//                }
             } else if (loaive.equals("Thẻ Tháng")) {
                
                 //if (loaixe.equals("Xe ô tô")) {
@@ -461,52 +411,12 @@ public class PFNhanXe extends javax.swing.JPanel {
                     cbxKhuVuc.setEnabled(false);
                     MANV.setEnabled(false);
                     loadMave(loaive());
-                    //cbxKhuVuc.setEnabled(true);
-                    
-                    //txtMauxe.setEnabled(false);
-                    //txtBienso.setDisabledTextColor(Color.black);
-//                    txtMauxe.setDisabledTextColor(Color.black);
-//                    cbxViTri.removeAllItems();
-//                    cbxKhuVuc.removeAllItems();
-                    //loadMave(loaive());
-//                    loadcbxKhuVuc(loaixe, loaive);
-//                    loadcbxViTri(loaive);
-//                } else if (loaixe.equals("Xe máy")) {
-//                    cbxLoaiXe.setEnabled(false);
-//                    //cbxKhuVuc.setEnabled(true);
-//                    txtBienso.setEnabled(false);
-//                    //txtMauxe.setEnabled(false);
-//                    //txtBienso.setDisabledTextColor(Color.black);
-////                    txtMauxe.setDisabledTextColor(Color.black);
-////                    cbxViTri.removeAllItems();
-////                    cbxKhuVuc.removeAllItems();
-//                    //loadcbxKhuVuc(loaixe, loaive);
-                      
-//                }
             }
         }
     }//GEN-LAST:event_cbxLoaiveItemStateChanged
 
     private void cbxMaveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxMaveItemStateChanged
         // TODO add your handling code here:
-//        cbxMave = (JComboBox<String>) evt.getSource();
-//        if (evt.getStateChange() == ItemEvent.SELECTED) {
-//            if (cbxLoaive.getSelectedItem().toString().equals("Vé Tháng")) {
-//                String loaive = cbxLoaive.getSelectedItem().toString();
-//                String loaixe = cbxLoaiXe.getSelectedItem().toString();
-//                String mave = cbxMave.getSelectedItem().toString();
-//                NhapXeDAO nxa = new NhapXeDAO();
-//                NhapXeDTO nxt = nxa.load2Text(mave);
-//                if (nxt != null) {
-//                    txtBienso.setText(nxt.getBienSo());
-//                    txtMauxe.setText(nxt.getMauXe());
-//                    cbxLoaiXe.setSelectedItem(nxt.getLoaiXe());
-//                    if (cbxLoaiXe.getSelectedItem().toString().equals("Ô tô")) {
-//                        loadcbxViTri(loaive);
-//                    }
-//                }
-//            }
-//        }
     }//GEN-LAST:event_cbxMaveItemStateChanged
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
@@ -577,71 +487,7 @@ public class PFNhanXe extends javax.swing.JPanel {
 
     private void txtBiensoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBiensoKeyPressed
 //        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            try {
-//                if (cbxLoaiXe.getSelectedItem().toString().equals("Xe máy")) {
-//                    if (txtBienso.getText().equals("")) {
-//                        JOptionPane.showMessageDialog(this, "Vui lòng nhập biển số");
-//                    } else {
-//                        String checkBienso = txtBienso.getText();
-//                        String loaive = cbxLoaive.getSelectedItem().toString();
-//                        //String khuvuc = cbxKhuVuc.getSelectedItem().toString();
-//                        String loaixe = cbxLoaiXe.getSelectedItem().toString();
-//                        NhapXeDAO nx = new NhapXeDAO();
-//                        NhapXeDTO checkxe = nx.checkBien(checkBienso);
-//                        if (checkxe != null) {
-//                            JOptionPane.showMessageDialog(this, "Xe đã có trong bãi");
-//                            txtBienso.setText("");
-//                        } else {
-//                            NhapXeDTO themxe = addXe();
-//                            if (nx.ThemXe(themxe) > 0) {
-//                                JOptionPane.showMessageDialog(this, "Nhập xe thành công!");
-//                                loadMave(checkBienso);
-//                                loadLoaiXe();
-//                                //loadChonVe();
-//
-////                                loadcbxKhuVuc(loaixe, loaive);
-////                                loadcbxViTri(loaive);
-//                                txtBienso.setText("");
-//                                //txtMauxe.setText("");
-//                            } else {
-//                                JOptionPane.showMessageDialog(this, "Nhập xe thất bại!");
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    if (txtBienso.getText().equals("")) {
-//                        JOptionPane.showMessageDialog(this, "Vui lòng nhập biển số");
-//                    } else {
-//                        String checkBienso = txtBienso.getText();
-//                        NhapXeDAO nx = new NhapXeDAO();
-//                        NhapXeDTO checkxe = nx.checkBien(checkBienso);
-//                        if (checkxe != null) {
-//                            JOptionPane.showMessageDialog(this, "Xe đã có trong bãi");
-//                            txtBienso.setText("");
-//                        } else {
-//                            NhapXeDTO themxe = addXe();
-//                            String loaive = cbxLoaive.getSelectedItem().toString();
-//                            //String khuvuc = cbxKhuVuc.getSelectedItem().toString();
-//                            String loaixe = cbxLoaiXe.getSelectedItem().toString();
-//                            if (nx.ThemXe(themxe) > 0) {
-//                                JOptionPane.showMessageDialog(this, "Nhập xe thành công!");
-//                                loadMave(checkBienso);
-//                                loadLoaiXe();
-//                                //loadChonVe();
-//
-////                                loadcbxKhuVuc(loaixe, loaive);
-////                                loadcbxViTri(loaive);
-//                                txtBienso.setText("");
-//                                //txtMauxe.setText("");
-//                            } else {
-//                                JOptionPane.showMessageDialog(this, "Nhập xe thất bại!");
-//                            }
-//                        }
-//                    }
-//                }
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+
 //        }
     }//GEN-LAST:event_txtBiensoKeyPressed
 
@@ -660,6 +506,18 @@ public class PFNhanXe extends javax.swing.JPanel {
     private void cbxKhuVucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxKhuVucActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxKhuVucActionPerformed
+
+    private void btnXacNhanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseEntered
+        // TODO add your handling code here:
+        btnXacNhan.setFont(new Font(btnXacNhan.getFont().getName(), Font.BOLD, btnXacNhan.getFont().getSize()));
+        btnXacNhan.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnXacNhanMouseEntered
+
+    private void btnXacNhanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXacNhanMouseExited
+        // TODO add your handling code here:
+        btnXacNhan.setFont(new Font(btnXacNhan.getFont().getName(), Font.PLAIN, btnXacNhan.getFont().getSize()));
+        btnXacNhan.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnXacNhanMouseExited
 
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */

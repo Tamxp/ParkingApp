@@ -540,7 +540,7 @@ public class FMenuStaff extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
      private void btnDangXuatActionPerformed(java.awt.event.ActionEvent evt) {
-        new FLogin().setVisible(true);
+        new Main().setVisible(true);
         this.dispose();
     }
     private void btnThongTinThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTinThemActionPerformed

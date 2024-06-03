@@ -4,8 +4,17 @@
  */
 package UI;
 
+import DAO.DangKyVeThangDAO;
+import DAO.TongXeDAO;
+import DTO.DKVeThangDTO;
+import DTO.TongXeDTO;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
@@ -13,11 +22,13 @@ import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
  * @author Le Chuong
  */
 public class FThanhToan extends javax.swing.JFrame {
-
+    private DKVeThangDTO vethang;
+    private String ma;
+    private long Tien;
     /**
      * Creates new form FThanhToan
      */
-    public FThanhToan() {
+    public FThanhToan(DKVeThangDTO vt) {
         initComponents();
         jTextField1.setEditable(false);
         setLocationRelativeTo(null);
@@ -26,6 +37,25 @@ public class FThanhToan extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(getClass().getResource("/UI/Image/Logo_PTIT.jpg")); // Sử dụng đường dẫn tương đối
         Image newImage = icon.getImage().getScaledInstance(45, 45, Image.SCALE_SMOOTH);
         this.setIconImage(newImage);
+        vethang=vt;
+        Tien=DangKyVeThangDAO.layPhiThang(vt.getSoTien());
+        String soTien=String.valueOf(DangKyVeThangDAO.layPhiThang(vt.getSoTien()))+"VND";
+        jTextField1.setText(soTien);
+    }
+    
+    public TongXeDTO themHoadon(DKVeThangDTO veThang) {
+        TongXeDTO themxe = new TongXeDTO();
+        themxe.setBienSo(veThang.getBienSo());
+        themxe.setLoaiXe(veThang.getLoaiXe());
+        themxe.setLoaiVe("The Thang");
+        themxe.setMaVe(veThang.getMaVethang());
+        themxe.setKhuVuc("KVThang");
+        themxe.setNgayGui(veThang.getNgayDk());
+        themxe.setGioGui("00:00:00");
+        themxe.setNgayTra(veThang.getNgayHetHan());
+        themxe.setGioTra("00:00:00");
+        themxe.setGiaTien((int)Tien);
+        return themxe;
     }
 
     /**
@@ -55,6 +85,14 @@ public class FThanhToan extends javax.swing.JFrame {
         btnYeuCau.setBackground(new java.awt.Color(102, 102, 255));
         btnYeuCau.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         btnYeuCau.setText("Thanh Toán");
+        btnYeuCau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnYeuCauMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnYeuCauMouseExited(evt);
+            }
+        });
         btnYeuCau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnYeuCauActionPerformed(evt);
@@ -109,60 +147,40 @@ public class FThanhToan extends javax.swing.JFrame {
 
     private void btnYeuCauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnYeuCauActionPerformed
         // TODO add your handling code here:
-        //        try {
-            //            String hoTen = txtNgay.getText();
-            //            //String gt = GioiTinh.getSelectedItem().toString();
-            //            //String diaChi = Diachi.getText();
-            //            String sdt = txtBSX.getText();
-            //            //String cccd= CCCD.getText();
-            //            if (txtNgay.getText().equals("")) {
-                //                lbHoTen.setText("*Chưa nhập họ tên.");
-                //                lbHoTen.setForeground(Color.red);
-                //                Border RedLine = BorderFactory.createLineBorder(Color.red);
-                //                txtNgay.setBorder(RedLine);
-                //            }
-            //            else if (Diachi.getText().equals("")) {
-                //                lbDiachi.setText("*Chưa nhập địa chỉ.");
-                //                lbDiachi.setForeground(Color.red);
-                //                Border RedLine = BorderFactory.createLineBorder(Color.red);
-                //                Diachi.setBorder(RedLine);
-                //            }
-            //            else if (txtBSX.getText().equals("")) {
-                //                lbSDT.setText("*Chưa nhập số điện thoại.");
-                //                lbSDT.setForeground(Color.red);
-                //                Border RedLine = BorderFactory.createLineBorder(Color.red);
-                //                txtBSX.setBorder(RedLine);
-                //            }
-            //            else if (CCCD.getText().equals("")) {
-                //                lbCCCD.setText("*Chưa nhập số CCCD.");
-                //                lbCCCD.setForeground(Color.red);
-                //                Border RedLine = BorderFactory.createLineBorder(Color.red);
-                //                CCCD.setBorder(RedLine);
-                //            }
-            //            else if (!txtNgay.getText().equals("") && !Diachi.getText().equals("") && !txtBSX.getText().equals("") && !CCCD.getText().equals("")) {
-                //                DangNhapDAO dn = new DangNhapDAO();
-                //                if (dn.CheckPhone1(sdt)==false){
-                    //                    lbSDT.setText("*Số điện thoại đã được sử dụng.");
-                    //                    lbSDT.setForeground(Color.red);
-                    //                    Border RedLine = BorderFactory.createLineBorder(Color.red);
-                    //                    txtBSX.setBorder(RedLine);
-                    //                }
-                //                else{
-                    //                    if (dn.ThemCD(hoTen,diaChi, sdt, cccd)> 0) {
-                        //                        JOptionPane.showMessageDialog(this, "Thêm cư dân thành công!");
-                        //                        txtNgay.setText("");
-                        //                        Diachi.setText("");
-                        //                        txtBSX.setText("");
-                        //                        CCCD.setText("");
-                        //                    } else {
-                        //                        JOptionPane.showMessageDialog(this, "Thêm cư dân không thành công!");
-                        //                    }
-                    //                }
-                //            }
-            //        } catch (Exception e) {
-            //            e.printStackTrace();
-            //        }
+                try {  
+                    TongXeDAO txa = new TongXeDAO();
+                    TongXeDTO txt = themHoadon(vethang);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String formattedDate =vethang.getNgayDk().format(formatter);
+                    String tgTao=formattedDate+" 00:00:00";
+                    DangKyVeThangDAO dkvt=new DangKyVeThangDAO();
+                    if (dkvt.addVethang(vethang)>0){
+                        vethang.setMaVethang(dkvt.layMaVe(vethang.getBienSo()));
+                        txt.setMaVe(vethang.getMaVethang());
+                        int check1=txa.themCTHoaDon(txt);
+                        int check2=txa.themHoaDon(tgTao,(int)Tien,txa.layMaCTHoaDon2(vethang.getMaVethang()),"NV00007");
+                        new FVeThang(vethang).setVisible(true);
+                        this.dispose();
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Đã xảy ra lỗi!");
+                    }
+                } catch (Exception e) {
+                     e.printStackTrace();
+         }
     }//GEN-LAST:event_btnYeuCauActionPerformed
+
+    private void btnYeuCauMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnYeuCauMouseEntered
+        // TODO add your handling code here:
+        btnYeuCau.setFont(new Font(btnYeuCau.getFont().getName(), Font.BOLD, btnYeuCau.getFont().getSize()));
+        btnYeuCau.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnYeuCauMouseEntered
+
+    private void btnYeuCauMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnYeuCauMouseExited
+        // TODO add your handling code here:
+        btnYeuCau.setFont(new Font(btnYeuCau.getFont().getName(), Font.PLAIN, btnYeuCau.getFont().getSize()));
+        btnYeuCau.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnYeuCauMouseExited
 
     /**
      * @param args the command line arguments
@@ -194,7 +212,8 @@ public class FThanhToan extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FThanhToan().setVisible(true);
+                DKVeThangDTO vthang=new DKVeThangDTO();
+                new FThanhToan(vthang).setVisible(true);
             }
         });
     }

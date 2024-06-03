@@ -9,6 +9,7 @@ import DAO.KetNoiDAO;
 import DTO.AccountDTO;
 import DTO.INFO_TKNV;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -220,6 +221,14 @@ public class FTTAIKHOANNV_INFO extends javax.swing.JFrame {
         btnTroLai.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTroLai.setFocusable(false);
         btnTroLai.setName("btnTroLai"); // NOI18N
+        btnTroLai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTroLaiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTroLaiMouseExited(evt);
+            }
+        });
         btnTroLai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTroLaiActionPerformed(evt);
@@ -368,7 +377,7 @@ public class FTTAIKHOANNV_INFO extends javax.swing.JFrame {
          try {
                 DangNhapDAO dn = new DangNhapDAO();
                 INFO_TKNV nv=dn.TraNV(maNV);
-                MANV.setText(nv.getMaNV());
+                MANV.setText(maNV);
                 HOTEN.setText(nv.getHoTen());
                 GIOITINH.setText(nv.getGt());
                 NGAYSINH.setText(nv.getNgaySinh());
@@ -461,6 +470,18 @@ public class FTTAIKHOANNV_INFO extends javax.swing.JFrame {
     private void CCCDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CCCDKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_CCCDKeyPressed
+
+    private void btnTroLaiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTroLaiMouseEntered
+        // TODO add your handling code here:
+        btnTroLai.setFont(new Font(btnTroLai.getFont().getName(), Font.BOLD, btnTroLai.getFont().getSize()));
+        btnTroLai.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTroLaiMouseEntered
+
+    private void btnTroLaiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTroLaiMouseExited
+        // TODO add your handling code here:
+        btnTroLai.setFont(new Font(btnTroLai.getFont().getName(), Font.PLAIN, btnTroLai.getFont().getSize()));
+        btnTroLai.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTroLaiMouseExited
 
     /**
      * @param args the command line arguments

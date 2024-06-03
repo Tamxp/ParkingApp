@@ -7,6 +7,8 @@ package UI;
 import DAO.DangNhapDAO;
 import DTO.INFO_TKNV;
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -61,13 +63,13 @@ public class PFQLNhanVien extends javax.swing.JPanel {
 
         TableNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã NV", "Tên Nhân Viên", "Giới tính", "Ngày Sinh", "Địa chỉ", "CCCD", "SDT", "Chức vụ", "Lương"
+                "Mã NV", "Tên Nhân Viên", "Giới tính", "Ngày Sinh", "Địa chỉ", "CCCD", "SDT", "Chức vụ"
             }
         ));
         jScrollPane1.setViewportView(TableNhanVien);
@@ -79,6 +81,14 @@ public class PFQLNhanVien extends javax.swing.JPanel {
         btnThemTK.setBorderPainted(false);
         btnThemTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemTK.setFocusPainted(false);
+        btnThemTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseExited(evt);
+            }
+        });
         btnThemTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemTKActionPerformed(evt);
@@ -92,6 +102,14 @@ public class PFQLNhanVien extends javax.swing.JPanel {
         btnSuaTK.setBorderPainted(false);
         btnSuaTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuaTK.setFocusPainted(false);
+        btnSuaTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSuaTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSuaTKMouseExited(evt);
+            }
+        });
         btnSuaTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaTKActionPerformed(evt);
@@ -125,6 +143,12 @@ public class PFQLNhanVien extends javax.swing.JPanel {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnTimkiemMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTimkiemMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTimkiemMouseExited(evt);
+            }
         });
         btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +163,14 @@ public class PFQLNhanVien extends javax.swing.JPanel {
         btnSuaTK1.setBorderPainted(false);
         btnSuaTK1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnSuaTK1.setFocusPainted(false);
+        btnSuaTK1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnSuaTK1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnSuaTK1MouseExited(evt);
+            }
+        });
         btnSuaTK1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaTK1ActionPerformed(evt);
@@ -152,6 +184,12 @@ public class PFQLNhanVien extends javax.swing.JPanel {
         LamMoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 LamMoiMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LamMoiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LamMoiMouseExited(evt);
             }
         });
         LamMoi.addActionListener(new java.awt.event.ActionListener() {
@@ -241,11 +279,11 @@ public class PFQLNhanVien extends javax.swing.JPanel {
         Object[] row = new Object[10];
         String manv = txtTimkiem.getText();
         DangNhapDAO dn = new DangNhapDAO();
-        if (txtTimkiem.getText().contains("Nhập tài khoản...") == true) {
+        if (txtTimkiem.getText().contains("Nhập mã NV...") == true) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
         } else if (txtTimkiem.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
-            txtTimkiem.setText("Nhập tài khoản...");
+            txtTimkiem.setText("Nhập mã NV...");
             txtTimkiem.setForeground(new Color(153, 153, 153));
         } else {
             INFO_TKNV nx=dn.tableInfo2(manv);
@@ -266,42 +304,30 @@ public class PFQLNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTimkiemMouseClicked
 
     private void txtTimkiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimkiemKeyPressed
-        ////        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            ////            DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
-            ////            Object[] row = new Object[4];
-            ////            String checkAcc = txtTimkiem.getText();
-            ////            DangNhapDAO dn = new DangNhapDAO();
-            ////            AccountDTO ac = dn.CheckUser(txtTimkiem.getText());
-            ////            for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                ////                tblModel.removeRow(i);
-                ////            }
-            ////            if (ac != null) {
-                ////                row[0] = ac.getTenNguoidung();
-                ////                row[1] = ac.getSdt();
-                ////                row[2] = ac.getTaiKhoan();
-                ////                row[3] = ac.getMatKhau();
-                ////                tblModel.addRow(row);
-                ////                TableNhanVien.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-                    ////                    @Override
-                    ////                    public void valueChanged(ListSelectionEvent e) {
-                        ////                        if (TableNhanVien.getSelectedRow() >= 0) {
-                            ////                            txtTaikhoan.setEditable(false);
-                            ////                            txtTen.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 0));
-                            ////                            txtSdt.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 1));
-                            ////                            txtTaikhoan.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 2));
-                            ////                            txtPass.setText((String) TableNhanVien.getValueAt(TableNhanVien.getSelectedRow(), 3));
-                            ////                        }
-                        ////                    }
-                    ////                });
-            ////                txtTimkiem.setText("Nhập tài khoản...");
-            ////                txtTimkiem.setForeground(new Color(153, 153, 153));
-            ////            } else {
-            ////                JOptionPane.showMessageDialog(this, "Không tìm thấy tài khoản");
-            ////                txtTimkiem.setText("Nhập tài khoản...");
-            ////                txtTimkiem.setForeground(new Color(153, 153, 153));
-            ////                loadTabel();
-            ////            }
-        ////        }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
+            Object[] row = new Object[10];
+            String manv = txtTimkiem.getText();
+            DangNhapDAO dn = new DangNhapDAO();
+            if (txtTimkiem.getText().contains("Nhập mã NV...") == true) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
+            } else if (txtTimkiem.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Vui lòng nhập mã nhân viên cần tìm");
+                txtTimkiem.setText("Nhập mã NV...");
+                txtTimkiem.setForeground(new Color(153, 153, 153));
+            } else {
+                INFO_TKNV nx=dn.tableInfo2(manv);
+                if (nx!=null){
+                    loadTabel2(nx);
+                }
+                else {
+                    JOptionPane.showMessageDialog(this, "Không tìm thấy nhân viên");
+                    txtTimkiem.setText("Nhập tài khoản...");
+                    txtTimkiem.setForeground(new Color(153, 153, 153));
+                    loadTabel();
+                }
+            }
+         }
     }//GEN-LAST:event_txtTimkiemKeyPressed
 
     private void txtTimkiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTimkiemMouseClicked
@@ -321,44 +347,75 @@ public class PFQLNhanVien extends javax.swing.JPanel {
     private void btnThemTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemTKActionPerformed
         new FThemNV().setVisible(true);
 
-        //        try {
-            //            DefaultTableModel tblModel = (DefaultTableModel) TableNhanVien.getModel();
-            //            String checkacc = txtTaikhoan.getText();
-            //            if (txtTaikhoan.getText().equals("")) {
-                //                JOptionPane.showMessageDialog(this, "Vui lòng nhập tài khoản!");
-                //            } else if (txtTen.getText().equals("")) {
-                //                JOptionPane.showMessageDialog(this, "Vui lòng nhập tên nhân viên!");
-                //            } else if (txtSdt.getText().equals("")) {
-                //                JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại!");
-                //            } else if (txtPass.getText().equals("")) {
-                //                JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
-                //            } else {
-                //                DangNhapDAO dn = new DangNhapDAO();
-                //                AccountDTO tk = dn.CheckUser(checkacc);
-                //                if (tk != null) {
-                    //                    JOptionPane.showMessageDialog(this, "Tài khoản đã tồn tại!");
-                    //                    txtTaikhoan.setText("");
-                    //                } else {
-                    //                    AccountDTO ac = themAccount();
-                    //                    if (dn.ThemTk(ac) > 0) {
-                        //                        JOptionPane.showMessageDialog(this, "Thêm tài khoản thành công!");
-                        //                        txtTaikhoan.setText("");
-                        //                        txtTen.setText("");
-                        //                        txtSdt.setText("");
-                        //                        txtPass.setText("");
-                        //                        for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                            //                            tblModel.removeRow(i);
-                            //                        }
-                        //                        loadTabel();
-                        //                    } else {
-                        //                        JOptionPane.showMessageDialog(this, "Thêm tài khoản thất bại!");
-                        //                    }
-                    //                }
-                //            }
-            //        } catch (Exception e) {
-            //            e.printStackTrace();
-            //        }
     }//GEN-LAST:event_btnThemTKActionPerformed
+
+    private void btnThemTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseEntered
+        // TODO add your handling code here:
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.BOLD, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnThemTKMouseEntered
+
+    private void btnThemTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseExited
+        // TODO add your handling code here:
+        
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.PLAIN, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnThemTKMouseExited
+
+    private void btnSuaTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaTKMouseEntered
+        // TODO add your handling code here:
+        btnSuaTK.setFont(new Font(btnSuaTK.getFont().getName(), Font.BOLD, btnSuaTK.getFont().getSize()));
+        btnSuaTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnSuaTKMouseEntered
+
+    private void btnSuaTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaTKMouseExited
+        // TODO add your handling code here:
+        
+        btnSuaTK.setFont(new Font(btnSuaTK.getFont().getName(), Font.PLAIN, btnSuaTK.getFont().getSize()));
+        btnSuaTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnSuaTKMouseExited
+
+    private void btnSuaTK1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaTK1MouseEntered
+        // TODO add your handling code here:
+        
+        btnSuaTK1.setFont(new Font(btnSuaTK1.getFont().getName(), Font.BOLD, btnSuaTK1.getFont().getSize()));
+        btnSuaTK1.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnSuaTK1MouseEntered
+
+    private void btnSuaTK1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSuaTK1MouseExited
+        // TODO add your handling code here:
+        
+        btnSuaTK1.setFont(new Font(btnSuaTK1.getFont().getName(), Font.PLAIN, btnSuaTK1.getFont().getSize()));
+        btnSuaTK1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnSuaTK1MouseExited
+
+    private void btnTimkiemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseEntered
+        // TODO add your handling code here:
+        
+        btnTimkiem.setFont(new Font(btnTimkiem.getFont().getName(), Font.BOLD, btnTimkiem.getFont().getSize()));
+        btnTimkiem.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTimkiemMouseEntered
+
+    private void btnTimkiemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTimkiemMouseExited
+        // TODO add your handling code here:
+        
+        btnTimkiem.setFont(new Font(btnTimkiem.getFont().getName(), Font.PLAIN, btnTimkiem.getFont().getSize()));
+        btnTimkiem.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTimkiemMouseExited
+
+    private void LamMoiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseEntered
+        // TODO add your handling code here:
+        
+        LamMoi.setFont(new Font(LamMoi.getFont().getName(), Font.BOLD, LamMoi.getFont().getSize()));
+        LamMoi.setForeground(Color.WHITE);
+    }//GEN-LAST:event_LamMoiMouseEntered
+
+    private void LamMoiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LamMoiMouseExited
+        // TODO add your handling code here:
+        
+        LamMoi.setFont(new Font(LamMoi.getFont().getName(), Font.PLAIN, LamMoi.getFont().getSize()));
+        LamMoi.setForeground(Color.BLACK);
+    }//GEN-LAST:event_LamMoiMouseExited
 
     public void loadTabel() {
         ArrayList<INFO_TKNV> list = DangNhapDAO.tableInfo();
@@ -376,7 +433,6 @@ public class PFQLNhanVien extends javax.swing.JPanel {
             row[5] = list.get(i).getCCCD();
             row[6] = list.get(i).getSDT();
             row[7] = list.get(i).getChucVu();
-            row[8] = list.get(i).getLuong();
             tblModel.addRow(row);
         }
     }
@@ -395,8 +451,6 @@ public class PFQLNhanVien extends javax.swing.JPanel {
         row[5] = nx.getCCCD();
         row[6] = nx.getSDT();
         row[7] = nx.getChucVu();
-        row[8] = nx.getLoaiNV();
-        row[9] = nx.getLuong();
         tblModel.addRow(row);
     }
 

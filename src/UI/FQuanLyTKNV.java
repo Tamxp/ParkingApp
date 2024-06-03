@@ -7,6 +7,7 @@ package UI;
 import DAO.DangNhapDAO;
 import DTO.AccountDTO;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
@@ -115,6 +116,14 @@ public class FQuanLyTKNV extends javax.swing.JFrame {
         btnThemTK.setBorderPainted(false);
         btnThemTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThemTK.setFocusPainted(false);
+        btnThemTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnThemTKMouseExited(evt);
+            }
+        });
         btnThemTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemTKActionPerformed(evt);
@@ -125,6 +134,14 @@ public class FQuanLyTKNV extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton1.setText("Làm Mới");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -275,6 +292,14 @@ public class FQuanLyTKNV extends javax.swing.JFrame {
         btnBatTK.setBorderPainted(false);
         btnBatTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBatTK.setFocusPainted(false);
+        btnBatTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnBatTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnBatTKMouseExited(evt);
+            }
+        });
         btnBatTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatTKActionPerformed(evt);
@@ -291,6 +316,14 @@ public class FQuanLyTKNV extends javax.swing.JFrame {
         btnTatTK.setBorderPainted(false);
         btnTatTK.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTatTK.setFocusPainted(false);
+        btnTatTK.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnTatTKMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnTatTKMouseExited(evt);
+            }
+        });
         btnTatTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTatTKActionPerformed(evt);
@@ -468,7 +501,56 @@ public class FQuanLyTKNV extends javax.swing.JFrame {
 
     private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtSdtActionPerformed
+
+    private void btnThemTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseEntered
+        // TODO add your handling code here:
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.BOLD, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnThemTKMouseEntered
+
+    private void btnThemTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThemTKMouseExited
+        // TODO add your handling code here:
+        btnThemTK.setFont(new Font(btnThemTK.getFont().getName(), Font.PLAIN, btnThemTK.getFont().getSize()));
+        btnThemTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnThemTKMouseExited
+
+    private void btnTatTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTatTKMouseEntered
+        // TODO add your handling code here:
+        btnTatTK.setFont(new Font(btnTatTK.getFont().getName(), Font.BOLD, btnTatTK.getFont().getSize()));
+        btnTatTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnTatTKMouseEntered
+
+    private void btnTatTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTatTKMouseExited
+        // TODO add your handling code here:
+        btnTatTK.setFont(new Font(btnTatTK.getFont().getName(), Font.PLAIN, btnTatTK.getFont().getSize()));
+        btnTatTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnTatTKMouseExited
+
+    private void btnBatTKMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatTKMouseEntered
+        // TODO add your handling code here:
+        btnBatTK.setFont(new Font(btnBatTK.getFont().getName(), Font.BOLD, btnBatTK.getFont().getSize()));
+        btnBatTK.setForeground(Color.WHITE);
+    }//GEN-LAST:event_btnBatTKMouseEntered
+
+    private void btnBatTKMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBatTKMouseExited
+        // TODO add your handling code here:
+        btnBatTK.setFont(new Font(btnBatTK.getFont().getName(), Font.PLAIN, btnBatTK.getFont().getSize()));
+        btnBatTK.setForeground(Color.BLACK);
+    }//GEN-LAST:event_btnBatTKMouseExited
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setFont(new Font(jButton1.getFont().getName(), Font.BOLD, jButton1.getFont().getSize()));
+        jButton1.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setFont(new Font(jButton1.getFont().getName(), Font.PLAIN, jButton1.getFont().getSize()));
+        jButton1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jButton1MouseExited
 
     /**
      * @param args the command line arguments

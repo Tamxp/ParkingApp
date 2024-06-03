@@ -179,9 +179,8 @@ public class TraXeDAO extends KetNoiDAO {
                        nx.setNgayNhan(LocalDate.now());
                        nx.setGioNhan("");
                    }
-                  
-                }
-                lichsuXe.add(nx);
+                   lichsuXe.add(nx);
+                }  
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -201,7 +200,7 @@ public class TraXeDAO extends KetNoiDAO {
             if (rs.next()) {
                 nx = new NhapXeDTO();
                 nx.setMaVe(ma);
-                nx.setBienSo(rs.getString(5));
+                nx.setBienSo(rs.getString(4));
                 sql="select * from XE where BSX=?";
                 ps=conn.prepareStatement(sql);
                 ps.setString(1, nx.getBienSo());
@@ -230,8 +229,8 @@ public class TraXeDAO extends KetNoiDAO {
                        nx.setNgayNhan(LocalDate.now());
                        nx.setGioNhan("");
                    }
-                }
-                lichsuXe.add(nx);
+                   lichsuXe.add(nx);
+                } 
             }
         } catch (Exception e) {
             e.printStackTrace();
