@@ -206,6 +206,9 @@ public class PFTraLichSu extends javax.swing.JPanel {
      public void loadTable1(String bienso) {
         ArrayList<NhapXeDTO> list = TraXeDAO.traTTTheoBienSo(bienso);
         DefaultTableModel tblModel = (DefaultTableModel) TableTTXe.getModel();
+        for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
+                tblModel.removeRow(i);
+        }
         Object[] row = new Object[5];
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaVe();
@@ -223,6 +226,9 @@ public class PFTraLichSu extends javax.swing.JPanel {
       public void loadTable2(String ma) {
         ArrayList<NhapXeDTO> list = TraXeDAO.traTTTheoMaVe(ma);
         DefaultTableModel tblModel = (DefaultTableModel) TableTTXe.getModel();
+        for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
+                tblModel.removeRow(i);
+        }
         Object[] row = new Object[5];
         for (int i = 0; i < list.size(); i++) {
             row[0] = list.get(i).getMaVe();
@@ -246,16 +252,9 @@ public class PFTraLichSu extends javax.swing.JPanel {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         DefaultTableModel tblModel = (DefaultTableModel) TableTTXe.getModel();
-        Object[] row = new Object[5];
         if (cbxTimKiem.getSelectedItem().toString().equals("Theo biển số")) {
-            for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                tblModel.removeRow(i);
-            }
             loadTable1(txtTimKiem.getText().toString());
         } else {
-            for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                tblModel.removeRow(i);
-            }
             loadTable2(txtTimKiem.getText().toString());
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
@@ -266,14 +265,8 @@ public class PFTraLichSu extends javax.swing.JPanel {
              DefaultTableModel tblModel = (DefaultTableModel) TableTTXe.getModel();
             Object[] row = new Object[5];
             if (cbxTimKiem.getSelectedItem().toString().equals("Theo biển số")) {
-                for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                    tblModel.removeRow(i);
-                }
                 loadTable1(txtTimKiem.getText().toString());
             } else {
-                for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-                    tblModel.removeRow(i);
-                }
                 loadTable2(txtTimKiem.getText().toString());
             }
         }

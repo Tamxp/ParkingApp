@@ -40,6 +40,13 @@ public class PFXemLichLam extends javax.swing.JPanel {
         setSize(1270, 720);
         ma=maNV;
         loadTable1();
+        LocalDate now = LocalDate.now();
+        nam.setSelectedItem(String.valueOf(now.getYear()));
+        thang.setSelectedItem(String.valueOf(now.getMonthValue()));
+        ngay.setSelectedItem(String.valueOf(now.getDayOfMonth()));
+        nam2.setSelectedItem(String.valueOf(now.getYear()));
+        thang2.setSelectedItem(String.valueOf(now.getMonthValue()));
+        ngay2.setSelectedItem(String.valueOf(now.getDayOfMonth()));
     }
 
     public boolean isLeapYear(int year) {

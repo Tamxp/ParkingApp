@@ -54,10 +54,10 @@ public class TongXeDAO extends KetNoiDAO {
         return x;
     }
     
-    public int layMaCTHoaDon2(String maThe) throws Exception {
+    public int layMaCTHoaDon2(String maThe, String ngay) throws Exception {
         int x=0;
         try {
-            String sql = "select * from CT_HOADON where ID_THE='"+maThe+"'";
+            String sql = "select * from CT_HOADON where ID_THE='"+maThe+"' and ThoiGianGui='"+ngay+"'";
             conn = KetNoiDAO.getKetNoiDAO();
             ps = conn.prepareStatement(sql);
             ResultSet rs= ps.executeQuery();
@@ -86,11 +86,4 @@ public class TongXeDAO extends KetNoiDAO {
         return update;
     }
 
-//    public int xoaXekhoibai(String bienso) throws Exception {
-//        String sql = "delete from NHAPXE where BIENSO = '" + bienso + "'";
-//        conn = KetNoiDAO.getKetNoiDAO();
-//        ps = conn.prepareStatement(sql);
-//        int update = ps.executeUpdate();
-//        return update;
-//    }
 }

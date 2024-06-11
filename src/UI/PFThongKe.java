@@ -32,12 +32,13 @@ public class PFThongKe extends javax.swing.JPanel {
         loadMoneyTimeAll(layNgayHienTai(),layNgayHienTai());
         findAll(layNgayHienTai(),layNgayHienTai());
         LocalDate now = LocalDate.now();
-        ngay.setSelectedItem(String.valueOf(now.getDayOfMonth()));
-        thang.setSelectedItem(String.valueOf(now.getMonthValue()));
         nam.setSelectedItem(String.valueOf(now.getYear()));
-        ngay2.setSelectedItem(String.valueOf(now.getDayOfMonth()));
-        thang2.setSelectedItem(String.valueOf(now.getMonthValue()));
+        thang.setSelectedItem(String.valueOf(now.getMonthValue()));
+        ngay.setSelectedItem(String.valueOf(now.getDayOfMonth()));
         nam2.setSelectedItem(String.valueOf(now.getYear()));
+        thang2.setSelectedItem(String.valueOf(now.getMonthValue()));
+        ngay2.setSelectedItem(String.valueOf(now.getDayOfMonth()));
+       
     }
     private String layNgayHienTai(){
         

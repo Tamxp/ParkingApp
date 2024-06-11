@@ -39,7 +39,7 @@ public class FThanhToan extends javax.swing.JFrame {
         this.setIconImage(newImage);
         vethang=vt;
         Tien=DangKyVeThangDAO.layPhiThang(vt.getSoTien());
-        String soTien=String.valueOf(DangKyVeThangDAO.layPhiThang(vt.getSoTien()))+"VND";
+        String soTien=String.valueOf(Tien)+"VND";
         jTextField1.setText(soTien);
     }
     
@@ -158,7 +158,7 @@ public class FThanhToan extends javax.swing.JFrame {
                         vethang.setMaVethang(dkvt.layMaVe(vethang.getBienSo()));
                         txt.setMaVe(vethang.getMaVethang());
                         int check1=txa.themCTHoaDon(txt);
-                        int check2=txa.themHoaDon(tgTao,(int)Tien,txa.layMaCTHoaDon2(vethang.getMaVethang()),"NV00007");
+                        int check2=txa.themHoaDon(tgTao,(int)Tien,txa.layMaCTHoaDon2(vethang.getMaVethang(),tgTao),"NV00007");
                         new FVeThang(vethang).setVisible(true);
                         this.dispose();
                     }

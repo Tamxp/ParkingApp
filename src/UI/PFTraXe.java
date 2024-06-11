@@ -71,14 +71,10 @@ public class PFTraXe extends javax.swing.JPanel {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (TableTTXe.getSelectedRow() >= 0) {
-                    //txtLoaiXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
                     txtBienSo.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 1) + "");
-                    //txtMauXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
                     txtMaVe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
                     txtPhi.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 6) + "");
-                    //txtViTri.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 3) + "");
-                    //txtNgayNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-                    //txtGioNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 5) + "");
+                 
                 }
             }
         });
@@ -506,15 +502,9 @@ public class PFTraXe extends javax.swing.JPanel {
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
                         if (TableTTXe.getSelectedRow() >= 0) {
-                            //txtLoaiXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
                             txtBienSo.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 1) + "");
-                            //txtMauXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
                             txtMaVe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
-                            
                             txtPhi.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 6) + "");
-                            //txtNgayNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-                            //stopAutoTime();
-                            //txtGioNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 5) + "");
                         }
                     }
                 });
@@ -546,15 +536,9 @@ public class PFTraXe extends javax.swing.JPanel {
                     @Override
                     public void valueChanged(ListSelectionEvent e) {
                         if (TableTTXe.getSelectedRow() >= 0) {
-                            //txtLoaiXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
                             txtBienSo.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 1) + "");
-                            //txtMauXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
                             txtMaVe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
                             txtPhi.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 6) + "");
-                            //txtViTri.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 3) + "");
-                            //txtNgayNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-                            //stopAutoTime();
-                            //txtGioNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 5) + "");
                         }
                     }
                 });
@@ -591,9 +575,6 @@ public class PFTraXe extends javax.swing.JPanel {
         txtPhi.setText("");
         cbxLoaive.setSelectedItem("Thẻ Lượt");
         btnInHoaDon.setEnabled(false);
-        //stopAutoTime();
-        //txtGioNhan.setText("");
-        //txtNgayNhan.setText("");
         loadTable();
     }//GEN-LAST:event_btnLamMoiActionPerformed
     private void cbxTimKiemItemStateChanged(java.awt.event.ItemEvent evt) {
@@ -606,7 +587,7 @@ public class PFTraXe extends javax.swing.JPanel {
         }
     }
     private void btnInHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInHoaDonActionPerformed
-//       new FHoaDon().setVisible(true);
+
         String vexe = txtMaVe.getText();
         vexe = vexe.replaceAll("\\s+$", "");
         int ID_phi=Integer.parseInt(txtPhi.getText());
@@ -624,87 +605,6 @@ public class PFTraXe extends javax.swing.JPanel {
 
     private void txtTimKiemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTimKiemKeyPressed
         // TODO add your handling code here:
-//        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-//            DefaultTableModel tblModel = (DefaultTableModel) TableTTXe.getModel();
-//            Object[] row = new Object[6];
-//            if (cbxTimKiem.getSelectedItem().toString().equals("Theo biển số")) {
-//                for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-//                    tblModel.removeRow(i);
-//                }
-//                TraXeDAO tx = new TraXeDAO();
-//                NhapXeDTO nx = tx.findXebyBienso(txtTimKiem.getText());
-//                if (nx != null) {
-//                    for (int i = 0; i < 1; i++) {
-//                        row[0] = nx.getLoaiXe();
-//                        row[1] = nx.getBienSo();
-//                        //row[2] = nx.getMauXe();
-//                        row[2] = nx.getMaVe();
-//                        //row[4] = nx.getKhuVuc();
-//                        row[3] = nx.getViTri();
-//                        row[4] = nx.getNgayGui();
-//                        row[5] = nx.getGioGui();
-//                        tblModel.addRow(row);
-//                    }
-//                    TableTTXe.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//                        @Override
-//                        public void valueChanged(ListSelectionEvent e) {
-//                            if (TableTTXe.getSelectedRow() >= 0) {
-//                                txtLoaiXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
-//                                txtBienSo.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 1) + "");
-//                                //txtMauXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
-//                                txtMaVe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
-//                                //txtKhuVuc.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-//                                txtViTri.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 3) + "");
-//                                txtNgayNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-//                                txtGioNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 5) + "");
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Không tìm thấy xe có biển số " + txtTimKiem.getText() + " \nVui lòng nhập lại biển số");
-//                    loadTabel();
-//                    txtTimKiem.setText("");
-//                }
-//            } else {
-//                for (int i = tblModel.getRowCount() - 1; i >= 0; i--) {
-//                    tblModel.removeRow(i);
-//                }
-//                TraXeDAO tx = new TraXeDAO();
-//                NhapXeDTO nx = tx.findXebyMave(txtTimKiem.getText());
-//                if (nx != null) {
-//                    for (int i = 0; i < 1; i++) {
-//                        row[0] = nx.getLoaiXe();
-//                        row[1] = nx.getBienSo();
-//                        //row[2] = nx.getMauXe();
-//                        row[2] = nx.getMaVe();
-//                        //row[4] = nx.getKhuVuc();
-//                        row[3] = nx.getViTri();
-//                        row[4] = nx.getNgayGui();
-//                        row[5] = nx.getGioGui();
-//                        tblModel.addRow(row);
-//                    }
-//                    TableTTXe.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//                        @Override
-//                        public void valueChanged(ListSelectionEvent e) {
-//                            if (TableTTXe.getSelectedRow() >= 0) {
-//                                txtLoaiXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 0) + "");
-//                                txtBienSo.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 1) + "");
-//                                //txtMauXe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
-//                                txtMaVe.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 2) + "");
-//                                //txtKhuVuc.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-//                                txtViTri.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 3) + "");
-//                                txtNgayNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 4) + "");
-//                                txtGioNhan.setText(TableTTXe.getValueAt(TableTTXe.getSelectedRow(), 5) + "");
-//                            }
-//                        }
-//                    });
-//                } else {
-//                    JOptionPane.showMessageDialog(this, "Không tìm thấy vé xe " + txtTimKiem.getText() + " \nVui lòng nhập mã vé");
-//                    loadTabel();
-//                    txtTimKiem.setText("");
-//                }
-//            }
-//        }
     }//GEN-LAST:event_txtTimKiemKeyPressed
 
     private void cbxLoaiveItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbxLoaiveItemStateChanged
@@ -712,7 +612,6 @@ public class PFTraXe extends javax.swing.JPanel {
         cbxLoaive = (JComboBox<String>) evt.getSource();
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             String loaive = (String)cbxLoaive.getSelectedItem();
-            //String khuvuc = cbxKhuVuc.getSelectedItem().toString();
             if (loaive.equals("Thẻ Lượt")==true) {
                 txtMaVe.setText("");
                 jLabel8.setText("Ngày Trả:");
@@ -744,8 +643,6 @@ public class PFTraXe extends javax.swing.JPanel {
                 {
                     String loaive = cbxLoaive.getSelectedItem().toString();
                     String ma=txtMaVe.getText();
-                    //String khuvuc = cbxKhuVuc.getSelectedItem().toString();
-//                    String loaixe = cbxLoaiXe.getSelectedItem().toString();
                     TraXeDAO nx = new TraXeDAO();
                     NhapXeDTO checkVe = nx.checkMaVe(ma);
                     if (checkVe==null)
@@ -757,14 +654,8 @@ public class PFTraXe extends javax.swing.JPanel {
                     {
                         txtBienSo.setText(checkVe.getBienSo());
                         txtPhi.setText(String.valueOf(checkVe.getID_phi()));
-                        //txtNgayNhan.setText(checkVe.getNgayGui());
-                        //txtGioNhan.setText(checkVe.getGioGui());
                         JOptionPane.showMessageDialog(this, "Thẻ hợp lệ.");
                         btnInHoaDon.setEnabled(true);
-                        //LocalDate ngayRa= LocalDate.parse(txtNgayNhan.getText());
-                        //String gioRa=txtGioNhan.getText();
-                        //nx.EXIT_TL(gioRa, ngayRa, ma);
-                        //loadTable();
                     }
                 }
             }      

@@ -31,6 +31,21 @@ public class FQuanLyTKCD extends javax.swing.JFrame {
         loadnv2();
         loadnv3();
     }
+     public boolean isValidPhoneNumber(String phoneNumber) {
+        // Kiểm tra độ dài (10 hoặc 11 chữ số)
+        if (phoneNumber.length() != 10) {
+            return false;
+        }
+
+        // Kiểm tra tất cả các ký tự phải là chữ số
+        for (int i = 0; i < phoneNumber.length(); i++) {
+            if (!Character.isDigit(phoneNumber.charAt(i))) {
+                return false;
+            }
+        }
+         // Kiểm tra xem số điện thoại bắt đầu bằng đầu số hợp lệ
+        return phoneNumber.matches("^(03|05|07|08|09)\\d{8}$");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -470,6 +485,8 @@ public class FQuanLyTKCD extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập tên tài khoản!");
             } else if (txtSdt.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập số điện thoại!");
+            }else if(!isValidPhoneNumber(txtSdt.getText())){
+                JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ!");
             } else if (txtPass.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập mật khẩu!");
             } else {

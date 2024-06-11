@@ -89,7 +89,7 @@ public class TraXeDAO extends KetNoiDAO {
         boolean tk = false;
         try {
             Connection conn = KetNoiDAO.getKetNoiDAO();
-            String sql = "SELECT CONVERT(date, NGAYHETHAN) AS Ngay FROM THETHANG where ID='" + ma + "'";
+            String sql = "SELECT CONVERT(date, NGAYHETHAN) AS Ngay FROM THETHANG where ID='" + ma + "' and Status='Dang su dung'";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -141,6 +141,8 @@ public class TraXeDAO extends KetNoiDAO {
     public static ArrayList<NhapXeDTO> traTTTheoBienSo(String bienso) {
         ArrayList<NhapXeDTO> lichsuXe = new ArrayList<>();
         NhapXeDTO nx = null;
+        String maVe="";
+        String loaiXe="";
         try {
             Connection conn = KetNoiDAO.getKetNoiDAO();
             String sql = "select * from THETHANG where BSX=? and Status='Dang su dung'";
@@ -148,21 +150,23 @@ public class TraXeDAO extends KetNoiDAO {
             ps.setString(1, bienso);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                nx = new NhapXeDTO();
-                nx.setMaVe(rs.getString(1));
-                nx.setBienSo(bienso);
+                maVe=rs.getString(1);
                 sql="select * from XE where BSX=?";
                 ps=conn.prepareStatement(sql);
                 ps.setString(1, bienso);
                 rs = ps.executeQuery();
                 if (rs.next()){
-                    nx.setLoaiXe(rs.getString(2));
+                    loaiXe=rs.getString(2);
                 }
                 sql="select * from LUOT_RAVAO where ID_the=?";
                 ps=conn.prepareStatement(sql);
-                ps.setString(1, nx.getMaVe());
+                ps.setString(1, maVe);
                 rs = ps.executeQuery();
                 while(rs.next()){
+                   nx = new NhapXeDTO();
+                   nx.setMaVe(maVe);
+                   nx.setBienSo(bienso);
+                   nx.setLoaiXe(loaiXe);
                    Timestamp timestamp = rs.getTimestamp(3);
                    LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
                    String hour = timestamp.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
@@ -191,6 +195,8 @@ public class TraXeDAO extends KetNoiDAO {
     public static ArrayList<NhapXeDTO> traTTTheoMaVe(String ma) {
         ArrayList<NhapXeDTO> lichsuXe = new ArrayList<>();
         NhapXeDTO nx = null;
+        String bs="";
+        String loaiXe="";
         try {
             Connection conn = KetNoiDAO.getKetNoiDAO();
             String sql = "select * from THETHANG where ID=? and Status='Dang su dung'";
@@ -198,26 +204,29 @@ public class TraXeDAO extends KetNoiDAO {
             ps.setString(1, ma);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                nx = new NhapXeDTO();
-                nx.setMaVe(ma);
-                nx.setBienSo(rs.getString(4));
+                bs=rs.getString(4);
                 sql="select * from XE where BSX=?";
                 ps=conn.prepareStatement(sql);
-                ps.setString(1, nx.getBienSo());
+                ps.setString(1, bs);
                 rs = ps.executeQuery();
                 if (rs.next()){
-                    nx.setLoaiXe(rs.getString(2));
+                    loaiXe=rs.getString(2);
                 }
                 sql="select * from LUOT_RAVAO where ID_the=?";
                 ps=conn.prepareStatement(sql);
                 ps.setString(1, ma);
                 rs = ps.executeQuery();
                 while(rs.next()){
+                   nx = new NhapXeDTO();
+                   nx.setMaVe(ma);
+                   nx.setBienSo(bs);
+                   nx.setLoaiXe(loaiXe);
                    Timestamp timestamp = rs.getTimestamp(3);
                    LocalDate localDate = timestamp.toLocalDateTime().toLocalDate();
                    String hour = timestamp.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
                    nx.setNgayGui(localDate);
                    nx.setGioGui(hour);
+                   
                    Timestamp timestamp2 = rs.getTimestamp(4);
                    if (timestamp2!=null){
                         LocalDate localDate2 = timestamp2.toLocalDateTime().toLocalDate();

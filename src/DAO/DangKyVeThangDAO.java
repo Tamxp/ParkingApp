@@ -31,7 +31,7 @@ public class DangKyVeThangDAO extends KetNoiDAO {
             ps = conn.prepareStatement(sql);
             String x1= dkvt.getNgayDk()+" 00:00:00";
             String x2= dkvt.getNgayHetHan()+" 00:00:00";
-            ps.setString(1, "TL00001");
+            ps.setString(1, "TT00001");
             ps.setString(2, x1);
             ps.setString(3, x2);
             ps.setString(4, dkvt.getBienSo());
@@ -63,15 +63,24 @@ public class DangKyVeThangDAO extends KetNoiDAO {
         }
         return phi;
     }
+    
+    public static int layIDPhi (String Ma) {
+        int IDphi=0;
+        try {
+            Connection conn = KetNoiDAO.getKetNoiDAO();
+            String sql = "select * from THETHANG where ID=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, Ma);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                IDphi=rs.getInt(5);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return IDphi;
+    }
 
-//    public int deleteVethang() throws Exception {
-//        String sql = "delete from TONGVE where MONTH(NGAYDK) = MONTH(GETDATE())-1";
-//        conn = KetNoiDAO.getKetNoiDAO();
-//        ps = conn.prepareStatement(sql);
-//        int update = ps.executeUpdate();
-//        return update;
-//    }
-//
     public static int updateVethang(String mave) {
         int update=0;
         try{
@@ -84,55 +93,7 @@ public class DangKyVeThangDAO extends KetNoiDAO {
         }
         return update;
     }
-//
-//    public int updateTongvethang(String mave, String tenkh, String sdt, String bienso, String loaixe, String mauxe) throws Exception {
-//        String sql = "UPDATE DKVETHANG SET TENKH=N'" + tenkh + "',SDT='" + sdt + "',BIENSO='" + bienso + "',LOAIXE='" + loaixe + "',MAUXE=N'" + mauxe + "'"
-//                + "WHERE tID='" + mave + "'";
-//        conn = KetNoiDAO.getKetNoiDAO();
-//        ps = conn.prepareStatement(sql);
-//        int update = ps.executeUpdate();
-//        return update;
-//    }
-//
-//    public TongVeDTO checkVe(String mave) {
-//        TongVeDTO dkvt = null;
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "select vID from TONGVE where vID='" + mave + "'";
-//            PreparedStatement ps = conn.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            if (rs.next()) {
-//                dkvt = new TongVeDTO();
-//                dkvt.setMaVe(rs.getString("vID"));
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return dkvt;
-//    }
-//    
-//    
-//    List<TongVeDTO> list = new ArrayList<>();
-//
-//    public static ArrayList<TongVeDTO> tableVethang() {
-//        ArrayList<TongVeDTO> accounList = new ArrayList<>();
-//        try {
-//            Connection conn = KetNoiDAO.getKetNoiDAO();
-//            String sql = "select *from TONGVE where LOAIVE ='Vé Tháng'";
-//            Statement st = conn.createStatement();
-//            ResultSet rs = st.executeQuery(sql);
-//            TongVeDTO nx;
-//            accounList.removeAll(accounList);
-//            while (rs.next()) {
-//                nx = new TongVeDTO(rs.getString("vID"), rs.getString("LOAIVE"), rs.getString("TENKH"), rs.getString("SDT"), rs.getString("BIENSO"), rs.getString("LOAIXE"), rs.getString("MAUXE"), LocalDate(rs.getDate("NGAYDK")), rs.getInt("SOTIEN"));
-//                accounList.add(nx);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return accounList;
-//    }
-//
+
     public String layTenCD(String macd) {
         String ten = "";
         try {
@@ -334,6 +295,47 @@ public class DangKyVeThangDAO extends KetNoiDAO {
             e.printStackTrace();
         }
         return b;
+    }
+    
+    
+        public static int thanhToan(String maThe) {
+            int update = 0;
+            try {
+                Connection conn = KetNoiDAO.getKetNoiDAO();
+                String sql = "UPDATE THETHANG " +
+                     "SET NGAYTAO = DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()), 0), " +
+                     "    NGAYHETHAN = DATEADD(DAY, DATEDIFF(DAY, 0, GETDATE()) + 30, 0), " +
+                     "    Status = 'Dang su dung' " +
+                     "WHERE ID = ?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1, maThe);
+                update = ps.executeUpdate();
+                conn.close(); // Đóng kết nối sau khi sử dụng
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return update;
+        }
+    
+    public static ArrayList<String> loadMaThe2(String maCD) {
+        ArrayList<String> maThe = new ArrayList<>();
+        try {
+            Connection conn = KetNoiDAO.getKetNoiDAO();
+            String sql = "SELECT THETHANG.ID " +
+                         "FROM THETHANG " +
+                         "INNER JOIN XE ON THETHANG.BSX = XE.BSX " +
+                         "WHERE XE.MACD = ? and (THETHANG.Status='Het han' or THETHANG.Status='Khong su dung')";
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setString(1,maCD);
+            ResultSet rs = st.executeQuery();
+            maThe.removeAll(maThe);
+            while (rs.next()) {
+                maThe.add(rs.getString("ID"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return maThe;
     }
     
 }

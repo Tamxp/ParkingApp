@@ -71,30 +71,13 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
 
     private void loadMave() {
         ArrayList<String> list = TongVeDAO.LoadComboBoxMaVe();
-        jComboBox2.removeAllItems();
-        for (String item : list) {
-            jComboBox2.addItem(item);
-        }
         jComboBox3.removeAllItems();
         for (String item : list) {
             jComboBox3.addItem(item);
         }
     }
     
-    
-//    public TongVeDTO addVe() {
-//        TongVeDTO tx = new TongVeDTO();
-//        tx.setMaVe(txtThemVe.getText());
-//        tx.setLoaiVe("Vé Ngày");
-//        tx.setTenKhach(null);
-//        tx.setSdt(null);
-//        tx.setBienSo(null);
-//        tx.setLoaiXe(null);
-//        tx.setMauXe(null);
-//        tx.setNgayDk(LocalDate.now());
-//        tx.setSoTien(0);
-//        return tx;
-//    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,20 +90,16 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
 
         jLabel3 = new javax.swing.JLabel();
         btnThemVe = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        btnXoaVe = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnCapNhat = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TableTTXe = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
@@ -148,31 +127,6 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         btnThemVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemVeActionPerformed(evt);
-            }
-        });
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Xóa Thẻ Ngày Mã :");
-
-        btnXoaVe.setBackground(new java.awt.Color(102, 102, 255));
-        btnXoaVe.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnXoaVe.setText("Xóa");
-        btnXoaVe.setBorder(null);
-        btnXoaVe.setBorderPainted(false);
-        btnXoaVe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnXoaVe.setFocusable(false);
-        btnXoaVe.setName("btnXoaVe"); // NOI18N
-        btnXoaVe.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btnXoaVeMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btnXoaVeMouseExited(evt);
-            }
-        });
-        btnXoaVe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaVeActionPerformed(evt);
             }
         });
 
@@ -208,8 +162,6 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
         jButton1.setBackground(new java.awt.Color(102, 102, 255));
@@ -240,8 +192,6 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         jScrollPane1.setViewportView(TableTTXe);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20" }));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
@@ -276,31 +226,24 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(82, 82, 82)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(38, 38, 38)
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel3)
                                     .addGap(18, 18, 18)
                                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnThemVe, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel5)
-                                            .addGap(44, 44, 44)
-                                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel4)
-                                            .addGap(76, 76, 76)
-                                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(514, Short.MAX_VALUE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(432, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -316,26 +259,19 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXoaVe, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCapNhat, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                 .addGap(14, 14, 14))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -394,40 +330,6 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnThemVeActionPerformed
 
-    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
-        // TODO add your handling code here:
-        try {
-            Object selectedItem = jComboBox2.getSelectedItem();
-            if (selectedItem != null) {
-                String ve = selectedItem.toString();
-                TongVeDAO tv = new TongVeDAO();
-                int response = JOptionPane.showConfirmDialog(
-                null,
-                "Bạn có chắc chắn xóa không?",
-                "Confirm",
-                JOptionPane.YES_NO_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-                );
-
-                // Xử lý phản hồi từ người dùng
-                if (response == JOptionPane.YES_OPTION) {
-                    if (tv.xoaVe(ve) > 0) {
-                    JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thành công!");
-                    loadTable();
-                    loadMave();
-                    }
-                    else
-                        JOptionPane.showMessageDialog(this, "Xóa thẻ " + ve + " thất bại!");
-                } else if (response == JOptionPane.NO_OPTION) {
-                }  
-            }
-            else
-                JOptionPane.showMessageDialog(this, "Không có thẻ để xóa!");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btnXoaVeActionPerformed
-
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
         
@@ -446,20 +348,6 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
         btnThemVe.setFont(new Font(btnThemVe.getFont().getName(), Font.PLAIN, btnThemVe.getFont().getSize()));
         btnThemVe.setForeground(Color.BLACK);
     }//GEN-LAST:event_btnThemVeMouseExited
-
-    private void btnXoaVeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaVeMouseEntered
-        // TODO add your handling code here:
-        
-        btnXoaVe.setFont(new Font(btnXoaVe.getFont().getName(), Font.BOLD, btnXoaVe.getFont().getSize()));
-        btnXoaVe.setForeground(Color.WHITE);
-    }//GEN-LAST:event_btnXoaVeMouseEntered
-
-    private void btnXoaVeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnXoaVeMouseExited
-        // TODO add your handling code here:
-        
-        btnXoaVe.setFont(new Font(btnXoaVe.getFont().getName(), Font.PLAIN, btnXoaVe.getFont().getSize()));
-        btnXoaVe.setForeground(Color.BLACK);
-    }//GEN-LAST:event_btnXoaVeMouseExited
 
     private void btnCapNhatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCapNhatMouseEntered
         // TODO add your handling code here:
@@ -494,19 +382,15 @@ public class PFQuanLyVeNgay extends javax.swing.JPanel {
     private javax.swing.JTable TableTTXe;
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThemVe;
-    private javax.swing.JButton btnXoaVe;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
     // End of variables declaration//GEN-END:variables

@@ -101,6 +101,31 @@ public class PFNhanXe extends javax.swing.JPanel {
         themxe.setID_phi(ID);
         return themxe;
     }
+    
+    public boolean isValidVehicleInfo(String bsx, String vehicleType) {
+        // Biểu thức chính quy cho biển số ô tô
+        String carRegex = "\\d{2}[A-Z]-\\d{3}\\.\\d{2}";
+    
+    // Biểu thức chính quy cho biển số xe máy
+        String motorbikeRegex1 = "\\d{2}[A-Z]{1}\\d{1}-\\d{3}\\.\\d{2}";
+        String motorbikeRegex2 = "\\d{2}[A-Z]{2}\\d{1}-\\d{3}\\.\\d{2}";
+        String motorbikeRegex3 = "\\d{2}[A-Z]{1}\\d{1}-\\d{4}";
+        String motorbikeRegex4 = "\\d{2}[A-Z]{2}-\\d{4}";
+        //bsx.matches(motorbikeRegex)
+    
+    // Kiểm tra nếu biển số khớp với định dạng ô tô và loại xe là "Ô tô"
+        if (bsx.matches(carRegex) && "Xe ô tô".equals(vehicleType)) {
+            return true;
+        }
+    
+    // Kiểm tra nếu biển số khớp với định dạng xe máy và loại xe là "Xe máy"
+        if ((bsx.matches(motorbikeRegex1)|| bsx.matches(motorbikeRegex2)||bsx.matches(motorbikeRegex3)||bsx.matches(motorbikeRegex4)) && "Xe máy".equals(vehicleType)) {
+            return true;
+        }
+
+    // Trả về false nếu không khớp với bất kỳ điều kiện nào
+        return false;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -430,12 +455,12 @@ public class PFNhanXe extends javax.swing.JPanel {
              } 
              else 
              {
-                     String checkBienso = txtBienso.getText();
+                     String Bienso = txtBienso.getText();
                      String loaive = cbxLoaive.getSelectedItem().toString();
-                    //String khuvuc = cbxKhuVuc.getSelectedItem().toString();
+                     String khuvuc = cbxKhuVuc.getSelectedItem().toString();
                      String loaixe = cbxLoaiXe.getSelectedItem().toString();
                      NhapXeDAO nx = new NhapXeDAO();
-                     NhapXeDTO checkxe = nx.checkBien(checkBienso);
+                     NhapXeDTO checkxe = nx.checkBien(Bienso);
                      if (checkxe != null) 
                      {
                            JOptionPane.showMessageDialog(this, "Xe đã có trong bãi");
@@ -443,19 +468,23 @@ public class PFNhanXe extends javax.swing.JPanel {
                      } 
                      else 
                      {
-                           NhapXeDTO themxe = addXe();
-                           if (nx.ThemXe(themxe) > 0) 
-                           {
-                                 JOptionPane.showMessageDialog(this, "Nhập xe thành công!");
-                                 loadMave(checkBienso);
-                                 loadMave(loaive());
-                                 txtBienso.setText("");
+                           if(!isValidVehicleInfo(Bienso, loaixe)){
+                               JOptionPane.showMessageDialog(this, "Biển số xe không hợp lệ!");
+                           }else{
+                                NhapXeDTO themxe = addXe();
+                                if (nx.ThemXe(themxe) > 0) 
+                                {
+                                    JOptionPane.showMessageDialog(this, "Nhập xe thành công!");
+                                    loadMave(Bienso);
+                                    loadMave(loaive());
+                                    txtBienso.setText("");
                            
-                            } 
-                            else 
-                            {
-                                JOptionPane.showMessageDialog(this, "Nhập xe thất bại!");
-                            }
+                                } 
+                                else 
+                                {
+                                    JOptionPane.showMessageDialog(this, "Nhập xe thất bại!");
+                                }
+                           }
                       }
                }
            }

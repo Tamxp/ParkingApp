@@ -6,7 +6,6 @@ package main;
 
 import DAO.NhapXeDAO;
 import UI.FMenuManager;
-import UI.a_LoadUngDung;
 import form.Home;
 import java.awt.EventQueue;
 import java.awt.Image;
@@ -150,7 +149,6 @@ public class Main extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new a_LoadUngDung().setVisible(true);
                 Main mainFrame = new Main();
                 mainFrame.setVisible(true);
     

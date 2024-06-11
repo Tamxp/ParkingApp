@@ -28,9 +28,10 @@ public class FMenuManager extends javax.swing.JFrame {
     private PFThongKe PFThongKeTab;
     private PFQuanLyVeNgay PFThongTinVeXeTab;
     private PFQuanLyVeThang PFThongTinVeThangTab;
+    private PFChinhSuaPhi PFChinhSuaPhiTab;
     private PFThongTinThem PFInfor;
     private String ma="";
-    boolean[] clicked = new boolean[7];
+    boolean[] clicked = new boolean[8];
 
     /**
      * Creates new form FMenuStaff
@@ -45,12 +46,12 @@ public class FMenuManager extends javax.swing.JFrame {
         this.setIconImage(newImage);
         xinchao(user);
         ma=maNV;
-        btnQuanLyCuDan.setMnemonic(KeyEvent.VK_1);
-        btnQuanLyCuDan.setMnemonic(KeyEvent.VK_2);
-        //btnQuanLyBaiXe.setMnemonic(KeyEvent.VK_2);
-        btnThongKe.setMnemonic(KeyEvent.VK_3);
-        //btnThongTinVeXe.setMnemonic(KeyEvent.VK_4);
-        btnThongTinThem.setMnemonic(KeyEvent.VK_5);
+//        btnQuanLyCuDan.setMnemonic(KeyEvent.VK_1);
+//        btnQuanLyCuDan.setMnemonic(KeyEvent.VK_2);
+//        //btnQuanLyBaiXe.setMnemonic(KeyEvent.VK_2);
+//        btnThongKe.setMnemonic(KeyEvent.VK_3);
+//        //btnThongTinVeXe.setMnemonic(KeyEvent.VK_4);
+//        btnThongTinThem.setMnemonic(KeyEvent.VK_5);
         
        
         
@@ -98,6 +99,13 @@ public class FMenuManager extends javax.swing.JFrame {
         btnThongTinTheThang.setBackground(new Color(204, 204, 255));
         btnThongTinTheThang.setBorder(BorderFactory.createEmptyBorder());
         
+        btnChinhPhi.setBorderPainted(false);
+        btnChinhPhi.setContentAreaFilled(false);
+        btnChinhPhi.setOpaque(true);
+        btnChinhPhi.setFocusPainted(false);
+        btnChinhPhi.setBackground(new Color(204, 204, 255));
+        btnChinhPhi.setBorder(BorderFactory.createEmptyBorder());
+        
         btnThongTinThem.setBorderPainted(false);
         btnThongTinThem.setContentAreaFilled(false);
         btnThongTinThem.setOpaque(true);
@@ -115,7 +123,7 @@ public class FMenuManager extends javax.swing.JFrame {
         }
     }
     private void flagClick(){
-        for (int i=0;i<7;++i){
+        for (int i=0;i<8;++i){
             if(clicked[i]==true){
                 switch (i) {
                     case 0:
@@ -149,10 +157,16 @@ public class FMenuManager extends javax.swing.JFrame {
                         btnThongTinTheNgay.setForeground(Color.BLACK);
                         break;
                     case 6:
+                        btnChinhPhi.setBackground(new Color(204,204,255));
+                        btnChinhPhi.setFont(new Font(btnThongTinThem.getFont().getName(), Font.PLAIN, btnThongTinThem.getFont().getSize()));
+                        btnChinhPhi.setForeground(Color.BLACK);
+                        break;
+                    case 7:
                         btnThongTinThem.setBackground(new Color(204,204,255));
                         btnThongTinThem.setFont(new Font(btnThongTinThem.getFont().getName(), Font.PLAIN, btnThongTinThem.getFont().getSize()));
                         btnThongTinThem.setForeground(Color.BLACK);
                         break;
+                    
                     default:
                         throw new AssertionError();
                 }
@@ -189,6 +203,7 @@ public class FMenuManager extends javax.swing.JFrame {
         btnThongTinTheNgay = new javax.swing.JButton();
         btnThongTinThem = new javax.swing.JButton();
         btnQuanLyNhanVien = new javax.swing.JButton();
+        btnChinhPhi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -504,17 +519,43 @@ public class FMenuManager extends javax.swing.JFrame {
             }
         });
 
+        btnChinhPhi.setBackground(new java.awt.Color(204, 204, 255));
+        btnChinhPhi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnChinhPhi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Image/icons8-write-32 (1).png"))); // NOI18N
+        btnChinhPhi.setText("Chỉnh Sửa Phí Gửi Xe");
+        btnChinhPhi.setBorder(null);
+        btnChinhPhi.setBorderPainted(false);
+        btnChinhPhi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnChinhPhi.setFocusPainted(false);
+        btnChinhPhi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnChinhPhi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        btnChinhPhi.setName("btnThongTinThem"); // NOI18N
+        btnChinhPhi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnChinhPhiMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnChinhPhiMouseExited(evt);
+            }
+        });
+        btnChinhPhi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChinhPhiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnThongTinTheNgay, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnThongTinThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnQuanLyCuDan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnQuanLyBaiXe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnThongTinTheThang, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
             .addComponent(btnQuanLyNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnThongTinThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnChinhPhi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -531,8 +572,10 @@ public class FMenuManager extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongTinTheNgay)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnChinhPhi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnThongTinThem)
-                .addGap(0, 344, Short.MAX_VALUE))
+                .addGap(0, 347, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -575,12 +618,12 @@ public class FMenuManager extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThongTinThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongTinThemActionPerformed
-        if (!clicked[6]) {
+        if (!clicked[7]) {
             btnThongTinThem.setBackground(new Color(102,102,255));// Thay đổi thành màu hồng nhạt khi nhấp chuột
             btnThongTinThem.setFont(new Font(btnThongTinThem.getFont().getName(), Font.BOLD, btnThongTinThem.getFont().getSize()));
             btnThongTinThem.setForeground(Color.WHITE);
             flagClick();
-            clicked[6] = true;    
+            clicked[7] = true;    
         } 
         if (TabMainBoard.getSelectedIndex() == 0) {
             TabMainBoard.remove(0);
@@ -782,14 +825,14 @@ public class FMenuManager extends javax.swing.JFrame {
 
     private void btnThongTinThemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongTinThemMouseEntered
         // TODO add your handling code here:
-        if (!clicked[6]) {
+        if (!clicked[7]) {
             btnThongTinThem.setBackground(new Color(107,107,255)); // Thay đổi thành màu xanh nhạt khi di chuột vào
         }
     }//GEN-LAST:event_btnThongTinThemMouseEntered
 
     private void btnThongTinThemMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThongTinThemMouseExited
         // TODO add your handling code here:
-        if (!clicked[6]) {
+        if (!clicked[7]) {
             btnThongTinThem.setBackground(new Color(204,204,255)); // Thay đổi thành màu xanh nhạt khi di chuột vào
         }
     }//GEN-LAST:event_btnThongTinThemMouseExited
@@ -866,6 +909,40 @@ public class FMenuManager extends javax.swing.JFrame {
         btnThoat.setForeground(Color.BLACK);
     }//GEN-LAST:event_btnThoatMouseExited
 
+    private void btnChinhPhiMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChinhPhiMouseEntered
+        // TODO add your handling code here:
+        if (!clicked[6]) {
+            btnChinhPhi.setBackground(new Color(107,107,255)); // Thay đổi thành màu xanh nhạt khi di chuột vào
+        }
+    }//GEN-LAST:event_btnChinhPhiMouseEntered
+
+    private void btnChinhPhiMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnChinhPhiMouseExited
+        // TODO add your handling code here:
+        if (!clicked[6]) {
+            btnChinhPhi.setBackground(new Color(204,204,255)); // Thay đổi thành màu xanh nhạt khi di chuột vào
+        }
+    }//GEN-LAST:event_btnChinhPhiMouseExited
+
+    private void btnChinhPhiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChinhPhiActionPerformed
+        // TODO add your handling code here:
+        if (!clicked[6]) {
+            btnChinhPhi.setBackground(new Color(102,102,255));// Thay đổi thành màu hồng nhạt khi nhấp chuột
+            btnChinhPhi.setFont(new Font(btnChinhPhi.getFont().getName(), Font.BOLD, btnChinhPhi.getFont().getSize()));
+            btnChinhPhi.setForeground(Color.WHITE);
+            flagClick();
+            clicked[6] = true;    
+        } 
+        if (TabMainBoard.getSelectedIndex() == 0) {
+            TabMainBoard.remove(0);
+            PFChinhSuaPhiTab = new PFChinhSuaPhi(ma);
+            TabMainBoard.addTab("Chỉnh Sửa Phí", null, PFChinhSuaPhiTab, "Chỉnh Sửa Phí");
+        }
+        if (PFChinhSuaPhiTab == null) {
+            PFChinhSuaPhiTab = new PFChinhSuaPhi(ma);
+            TabMainBoard.addTab("Chỉnh Sửa Phí", null, PFChinhSuaPhiTab, "Chỉnh Sửa Phí");
+        }
+    }//GEN-LAST:event_btnChinhPhiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -904,6 +981,7 @@ public class FMenuManager extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabMainBoard;
+    private javax.swing.JButton btnChinhPhi;
     private javax.swing.JLabel btnDoiMK;
     private javax.swing.JButton btnQuanLyBaiXe;
     private javax.swing.JButton btnQuanLyCuDan;

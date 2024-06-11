@@ -292,9 +292,9 @@ public class DangNhapDAO extends KetNoiDAO {
             ps = conn.prepareStatement(sql);
             ps.setString(1, ma);
             int update = ps.executeUpdate();
-            sql="update NHAN_VIEN set TRANGTHAI='True' where MANV=?";
-            ps.setString(1, ma);
-            ps.executeUpdate();
+            String sql1="update NHAN_VIEN set TRANGTHAI='True' where MANV='"+ma+"'";
+            PreparedStatement ps1 = conn.prepareStatement(sql1);
+            ps1.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -316,29 +316,13 @@ public class DangNhapDAO extends KetNoiDAO {
         return update;
     }
     public int DoiMK_CD(String taikhoan, String newpass, String oldpass) throws Exception {
-        String sql = "UPDATE TAIKHOAN_CD SET PASSWORD=CONVERT(varbinary,'" + newpass + "' WHERE USERNAME='" + taikhoan + "' AND PASSWORD='" + oldpass + "'";
+        String sql = "UPDATE TAIKHOAN_CD SET PASSWORD=CONVERT(varbinary,'" + newpass + "') WHERE USERNAME='" + taikhoan + "' AND PASSWORD=HASHBYTES('SHA2_256','" + oldpass + "')";
         conn = KetNoiDAO.getKetNoiDAO();
         ps = conn.prepareStatement(sql);
         int update = ps.executeUpdate();
         return update;
     }
 
-    public int updateAcc(String taikhoan, String tennv, String sdt, String matkhau) throws Exception {
-        String sql = "update ACCOUNT set TENNV=N'" + tennv + "',PHONE='" + sdt + "',PASS='" + matkhau + "' where USERNAME='" + taikhoan + "'";
-        conn = KetNoiDAO.getKetNoiDAO();
-        ps = conn.prepareStatement(sql);
-        int update = ps.executeUpdate();
-        return update;
-
-    }
-
-    public int deleteAcc(String taikhoan) throws Exception {
-        String sql = "delete from ACCOUNT where USERNAME = '" + taikhoan + "'";
-        conn = KetNoiDAO.getKetNoiDAO();
-        ps = conn.prepareStatement(sql);
-        int update = ps.executeUpdate();
-        return update;
-    }
     
     public INFO_TKNV TraNV(String ma) {
         INFO_TKNV tk = null;

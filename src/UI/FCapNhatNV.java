@@ -46,6 +46,69 @@ public class FCapNhatNV extends javax.swing.JFrame {
         }else return 31;
     }
 
+    public boolean checkHoTen(String name) {
+        // Kiểm tra ký tự đặc biệt
+        if (!name.matches("[a-zA-Z\\s]+")) {
+            return false;
+        }
+        return true;
+    }
+    
+    public String chuanHoaHoTen(String name) {
+        // Loại bỏ khoảng trắng ở đầu và cuối
+        name = name.trim();
+
+        // Tách chuỗi thành các từ
+        String[] words = name.split("\\s+");
+
+        // Tạo StringBuilder để ghép các từ đã chuẩn hóa
+        StringBuilder normalized = new StringBuilder();
+
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                // Viết hoa chữ cái đầu tiên và chuyển các chữ cái còn lại thành chữ thường
+                normalized.append(Character.toUpperCase(word.charAt(0)))
+                          .append(word.substring(1).toLowerCase())
+                          .append(" ");
+            }
+        }
+
+        // Trả về chuỗi đã chuẩn hóa, loại bỏ khoảng trắng cuối cùng
+        return normalized.toString().trim();
+    }
+
+    public boolean isValidPhoneNumber(String phoneNumber) {
+        // Kiểm tra độ dài (10 hoặc 11 chữ số)
+        if (phoneNumber.length() != 10) {
+            return false;
+        }
+
+        // Kiểm tra tất cả các ký tự phải là chữ số
+        for (int i = 0; i < phoneNumber.length(); i++) {
+            if (!Character.isDigit(phoneNumber.charAt(i))) {
+                return false;
+            }
+        }
+
+        // Kiểm tra xem số điện thoại bắt đầu bằng đầu số hợp lệ
+        return phoneNumber.matches("^(03|05|07|08|09)\\d{8}$");
+    }
+
+    public boolean isValidCCCD(String cccd) {
+        // Kiểm tra độ dài phải là 12 ký tự
+        if (cccd.length() != 12) {
+            return false;
+        }
+
+        // Kiểm tra tất cả các ký tự phải là chữ số
+        for (int i = 0; i < cccd.length(); i++) {
+            if (!Character.isDigit(cccd.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -413,6 +476,12 @@ public class FCapNhatNV extends javax.swing.JFrame {
                 Border RedLine = BorderFactory.createLineBorder(Color.red);
                 HoTen.setBorder(RedLine);
             }
+            else if (checkHoTen(HoTen.getText())==false) {
+                lbHoTen.setText("*Họ tên không được chứa kí tự số hoặc kí tự đặc biệt");
+                lbHoTen.setForeground(Color.red);
+                Border RedLine = BorderFactory.createLineBorder(Color.red);
+                HoTen.setBorder(RedLine);
+            }
             else if (Diachi.getText().equals("")) {
                 lbDiachi.setText("*Chưa nhập địa chỉ.");
                 lbDiachi.setForeground(Color.red);
@@ -425,11 +494,23 @@ public class FCapNhatNV extends javax.swing.JFrame {
                 Border RedLine = BorderFactory.createLineBorder(Color.red);
                 SDT.setBorder(RedLine);
             }
+            else if (!isValidPhoneNumber(SDT.getText())) {
+                lbSDT.setText("*Số điện thoại không hợp lệ.");
+                lbSDT.setForeground(Color.red);
+                Border RedLine = BorderFactory.createLineBorder(Color.red);
+                SDT.setBorder(RedLine);
+            }
             else if (CCCD.getText().equals("")) {
                 lbCCCD.setText("*Chưa nhập số CCCD.");
                 lbCCCD.setForeground(Color.red);
                 Border RedLine = BorderFactory.createLineBorder(Color.red);
                 CCCD.setBorder(RedLine);
+            }
+            else if (!isValidCCCD(CCCD.getText())) {
+                lbCCCD.setText("*Số CCCD không hợp lệ.");
+                lbCCCD.setForeground(Color.red);
+                Border RedLine = BorderFactory.createLineBorder(Color.red);
+                SDT.setBorder(RedLine);
             }
             else if (!HoTen.getText().equals("") && !Diachi.getText().equals("") && !SDT.getText().equals("") && !CCCD.getText().equals("")) {
                 DangNhapDAO dn = new DangNhapDAO();
@@ -440,7 +521,7 @@ public class FCapNhatNV extends javax.swing.JFrame {
                     SDT.setBorder(RedLine);
                 }
                 else{
-                    if (dn.capNhatNV(maNV,hoTen, gt, ns, diaChi, sdt, cccd, id_CV)> 0) {
+                    if (dn.capNhatNV(maNV,chuanHoaHoTen(hoTen), gt, ns, diaChi, sdt, cccd, id_CV)> 0) {
                         JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
                         MANV.setText("");
                         HoTen.setText("");

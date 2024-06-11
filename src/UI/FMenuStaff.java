@@ -573,11 +573,11 @@ public class FMenuStaff extends javax.swing.JFrame {
         if (TabMainBoard.getSelectedIndex() == 0) {
             TabMainBoard.remove(0);
             PFTraLichSuTab = new PFTraLichSu();
-            TabMainBoard.addTab("Đăng Kí Vé Tháng", null, PFTraLichSuTab, "Đăng Kí Vé Tháng");
+            TabMainBoard.addTab("Tra Lịch Sử Ra/Vào", null, PFTraLichSuTab, "Tra Lịch Sử Ra/Vào");
         }
         if (PFTraLichSuTab == null) {
             PFTraLichSuTab = new PFTraLichSu();
-            TabMainBoard.addTab("Đăng Kí Vé Thàng", null, PFTraLichSuTab, "Đăng Kí Vé Thàng");
+            TabMainBoard.addTab("Tra Lịch Sử Ra/Vào", null, PFTraLichSuTab, "Tra Lịch Sử Ra/Vào");
         }
     }//GEN-LAST:event_btnTraLichSuActionPerformed
 
